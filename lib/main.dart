@@ -1,44 +1,77 @@
-import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => MyAppState(),
-      child: MaterialApp(
-        title: 'Namer App',
-        theme: ThemeData(
-          useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
-        ),
-        home: MyHomePage(),
+    return MaterialApp(
+      title: 'Settings App',
+      theme: ThemeData(
+        primarySwatch: Colors.blueGrey,
+        backgroundColor: Colors.blueAccent,
+      ),
+      home: MainPage(),
+    );
+  }
+}
+
+
+
+class MainPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Main page'),
+      ),
+      body: ListView(
+        children: [
+          Text('This is Main page!'),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsPageState()));
+            },
+            child: Text('Go to Settings'),
+          ),
+        ],
       ),
     );
   }
 }
 
-class MyAppState extends ChangeNotifier {
-  var current = WordPair.random();
-}
 
-class MyHomePage extends StatelessWidget {
+class SettingsPageState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var appState = context.watch<MyAppState>();
-
     return Scaffold(
-      body: Column(
-        children: [
-          Text('A random idea:'),
-          Text(appState.current.asLowerCase),
+      appBar: AppBar(
+        title: Text('Settings'),
+      ),
+      body: ListView(
+        children: <Widget>[
+          ListTile(
+            title: Text('Включить уведомления'),
+            trailing: Switch(
+              value: true,
+              onChanged: (bool value) {},
+            ),
+          ),
+          ListTile(
+            title: Text('Рассказать друзьям'),
+          ),
+          ListTile(
+            title: Text('Условия пользования'),
+            onTap: () {},
+          ),
+          ListTile(
+            title: Text('Политика конфиденциальности'),
+          ),
+          ListTile(
+            title: Text('Служба поддержки'),
+          ),
         ],
       ),
     );
