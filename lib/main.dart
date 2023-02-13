@@ -18,8 +18,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
-
 class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -32,7 +30,8 @@ class MainPage extends StatelessWidget {
           Text('This is Main page!'),
           ElevatedButton(
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsPageState()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SettingsPageState()));
             },
             child: Text('Go to Settings'),
           ),
@@ -42,9 +41,17 @@ class MainPage extends StatelessWidget {
   }
 }
 
+class SettingsPageState extends StatefulWidget {
+  SettingsPageState({Key? key}) : super(key: key);
 
-class SettingsPageState extends StatelessWidget {
   @override
+  _SettingsPageState createState() => _SettingsPageState();
+}
+
+class _SettingsPageState extends State<SettingsPageState> {
+  @override
+  bool _isActive = false;
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -54,9 +61,20 @@ class SettingsPageState extends StatelessWidget {
         children: <Widget>[
           ListTile(
             title: Text('Включить уведомления'),
-            trailing: Switch(
-              value: true,
-              onChanged: (bool value) {},
+            trailing: GestureDetector(
+              onTap: () {
+                setState(() {
+                  _isActive = !_isActive;
+                });
+              },
+              child: Switch(
+                value: _isActive,
+                onChanged: (bool value) {
+                  setState(() {
+                    _isActive = !_isActive;
+                  });
+                },
+              ),
             ),
           ),
           ListTile(
