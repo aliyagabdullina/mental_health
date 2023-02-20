@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 void main() {
   runApp(MyApp());
 }
+
+Color backgroundColor = Color(0xFFB6B6B6);
+Color whiteTextColor = Color(0xFFFFFFFF);
 
 class MyApp extends StatelessWidget {
   @override
@@ -22,9 +26,6 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Main page'),
-      ),
       body: ListView(
         children: [
           Text('This is Main page!'),
@@ -50,47 +51,257 @@ class SettingsPageState extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPageState> {
   @override
-  bool _isActive = false;
-
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Settings'),
-      ),
-      body: ListView(
+      backgroundColor: backgroundColor,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          ListTile(
-            title: Text('Включить уведомления'),
-            trailing: GestureDetector(
-              onTap: () {
-                setState(() {
-                  _isActive = !_isActive;
-                });
-              },
-              child: Switch(
-                value: _isActive,
-                onChanged: (bool value) {
+          SizedBox(height: 90),
+          Notifications(),
+          SizedBox(height: 20),
+          _Friends(),
+          SizedBox(height: 20),
+          _UsingConditions(),
+          SizedBox(height: 20),
+          _PrivacyPolicy(),
+          SizedBox(height: 20),
+          _Support(),
+          _LotusVersion(),
+        ],
+      ),
+    );
+  }
+}
+
+class Notifications extends StatefulWidget {
+  Notifications({Key? key}) : super(key: key);
+
+  @override
+  _Notifications createState() => _Notifications();
+}
+
+class _Notifications extends State<Notifications> {
+  bool _isActive = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        height: 58,
+        width: 334,
+        decoration: BoxDecoration(
+          border: Border.all(width: 1, color: whiteTextColor),
+          borderRadius: const BorderRadius.all(Radius.circular(20)),
+        ),
+        margin: const EdgeInsets.all(4),
+        child: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(width: 15),
+              Image.asset('assets/Icons/notifications.png'),
+              SizedBox(width: 25),
+              Text('Включить уведомления',
+                  style: TextStyle(
+                      color: whiteTextColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700)),
+              GestureDetector(
+                onTap: () {
                   setState(() {
                     _isActive = !_isActive;
                   });
                 },
+                child: Switch(
+                  value: _isActive,
+                  onChanged: (bool value) {
+                    setState(() {
+                      _isActive = value;
+                    });
+                  },
+                ),
               ),
-            ),
+            ],
           ),
-          ListTile(
-            title: Text('Рассказать друзьям'),
+        ),
+      ),
+    );
+  }
+}
+
+class _Friends extends StatelessWidget {
+  const _Friends({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        height: 58,
+        width: 334,
+        decoration: BoxDecoration(
+          border: Border.all(width: 1, color: whiteTextColor),
+          borderRadius: const BorderRadius.all(Radius.circular(20)),
+        ),
+        margin: const EdgeInsets.all(4),
+        child: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(width: 15),
+              Image.asset('assets/Icons/friends.png'),
+              SizedBox(width: 40),
+              Text('Рассказать друзьям',
+                  style: TextStyle(
+                      color: whiteTextColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700)),
+            ],
           ),
-          ListTile(
-            title: Text('Условия пользования'),
-            onTap: () {},
+        ),
+      ),
+    );
+  }
+}
+
+class _UsingConditions extends StatelessWidget {
+  const _UsingConditions({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        height: 58,
+        width: 334,
+        decoration: BoxDecoration(
+          border: Border.all(width: 1, color: whiteTextColor),
+          borderRadius: const BorderRadius.all(Radius.circular(20)),
+        ),
+        margin: const EdgeInsets.all(4),
+        child: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(width: 15),
+              Image.asset('assets/Icons/usingConditions.png'),
+              SizedBox(width: 35),
+              Text('Условия пользования',
+                  style: TextStyle(
+                      color: whiteTextColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700)),
+            ],
           ),
-          ListTile(
-            title: Text('Политика конфиденциальности'),
+        ),
+      ),
+    );
+  }
+}
+
+class _PrivacyPolicy extends StatelessWidget {
+  const _PrivacyPolicy({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        height: 58,
+        width: 334,
+        decoration: BoxDecoration(
+          border: Border.all(width: 1, color: whiteTextColor),
+          borderRadius: const BorderRadius.all(Radius.circular(20)),
+        ),
+        margin: const EdgeInsets.all(4),
+        child: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(width: 15),
+              Image.asset('assets/Icons/privacyPolicy.png'),
+              SizedBox(width: 14),
+              Text('Политика конфиденциальности',
+                  style: TextStyle(
+                      color: whiteTextColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700)),
+            ],
           ),
-          ListTile(
-            title: Text('Служба поддержки'),
+        ),
+      ),
+    );
+  }
+}
+
+class _Support extends StatelessWidget {
+  const _Support({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        height: 58,
+        width: 334,
+        decoration: BoxDecoration(
+          border: Border.all(width: 1, color: whiteTextColor),
+          borderRadius: const BorderRadius.all(Radius.circular(20)),
+        ),
+        margin: const EdgeInsets.all(4),
+        child: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(width: 15),
+              Image.asset('assets/Icons/support.png'),
+              SizedBox(width: 40),
+              Text('Служба поддержки',
+                  style: TextStyle(
+                      color: whiteTextColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700)),
+            ],
           ),
-        ],
+        ),
+      ),
+    );
+  }
+}
+
+
+class _LotusVersion extends StatelessWidget {
+  const _LotusVersion({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        height: 58,
+        width: 334,
+        margin: const EdgeInsets.all(4),
+        child: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(width: 70),
+              Image.asset('assets/Icons/Lotus.png'),
+              SizedBox(width: 15),
+              Text('Версия 1.1',
+                  style: TextStyle(
+                      color: whiteTextColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700)),
+            ],
+          ),
+        ),
       ),
     );
   }

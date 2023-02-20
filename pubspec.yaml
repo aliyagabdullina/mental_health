@@ -24,3 +24,10 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/Icons/friends.png
+    - assets/Icons/notifications.png
+    - assets/Icons/privacyPolicy.png
+    - assets/Icons/support.png
+    - assets/Icons/usingConditions.png
+    - assets/Icons/Lotus.png
