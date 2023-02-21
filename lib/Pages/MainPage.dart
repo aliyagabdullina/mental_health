@@ -35,7 +35,11 @@ class _MainPageState extends State<MainPageState> {
               SizedBox(
                 width: 350,
                 height: 210,
-                child: Placeholder(),
+                child: Image.asset(
+                  'assets/Images/DayOffer.png',
+                  width: 350,
+                  height: 210,
+                ),
               ),
               SizedBox(height: 30),
               Text('Новости'),
@@ -43,13 +47,21 @@ class _MainPageState extends State<MainPageState> {
               SizedBox(
                 width: 350,
                 height: 210,
-                child: Placeholder(),
+                child: Image.asset(
+                  'assets/Images/News.png',
+                  width: 350,
+                  height: 210,
+                ),
               ),
               SizedBox(height: 20),
               SizedBox(
                 width: 350,
                 height: 210,
-                child: Placeholder(),
+                child:Image.asset(
+                  'assets/Images/News.png',
+                  width: 350,
+                  height: 210,
+                ),
               ),
             ],
           ),
