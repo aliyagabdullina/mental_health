@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:Mental_Health/Pages/MainPage.dart';
 import 'package:Mental_Health/Pages/SettingsPage.dart';
+import 'package:Mental_Health/Pages/Panel.dart';
 
 void main() {
   runApp(MyApp());
