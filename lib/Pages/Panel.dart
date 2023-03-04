@@ -6,15 +6,20 @@ class BottomPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
       height: 72,
       decoration: BoxDecoration(
+        gradient: LinearGradient(colors: [
+          Color.fromRGBO(187, 187, 187, 0.7),
+          Color.fromRGBO(5, 5, 5, 0.7),
+        ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
         color: PanelColor,
         boxShadow: [
           BoxShadow(
-              color: PanelColor,
-              spreadRadius: 5,
-              blurRadius: 5,
-              offset: Offset(0.0, 1.0))
+            color: PanelColor,
+            blurRadius: 100,
+            blurStyle: BlurStyle.solid,
+          )
         ],
       ),
       child: Row(

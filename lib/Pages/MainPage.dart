@@ -65,7 +65,10 @@ class _MainPageState extends State<MainPageState> {
   Widget classes() {
     return Column(
       children: <Widget>[
-        Text('Занятия для тебя'),
+        Text(
+          "Занятия для тебя",
+          textAlign: TextAlign.left
+        ),
         SizedBox(height: 20),
         classesScroll(),
       ],
