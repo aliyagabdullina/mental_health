@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:Mental_Health/Pages/Panel.dart';
 import 'package:Mental_Health/Pages/TimeScreenPage.dart';
+import 'package:Mental_Health/Pages/LevelScreenPage.dart';
+import 'package:Mental_Health/Pages/DirectionScreenPage.dart';
 
 Color backgroundColor = Color(0xFFB6B6B6);
 Color whiteTextColor = Color(0xFFFFFFFF);
@@ -36,7 +38,7 @@ class _YogaPageState extends State<YogaPageState> {
               yoga(),
             ],
           ),
-          if (_showOverlay)
+          if (_showOverlayTime)
             Positioned(
               top: 0,
               left: 0,
@@ -49,13 +51,55 @@ class _YogaPageState extends State<YogaPageState> {
                 ),
               ),
             ),
-          if (_showOverlay)
+          if (_showOverlayTime)
             Positioned(
               top: 125,
               left: 0,
               right: 0,
               bottom: 510,
               child: TimeScreenPageState(),
+            ),
+          if (_showOverlayLevel)
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              child: GestureDetector(
+                onTap: _hideLevelScreenPage,
+                child: Container(
+                  color: Colors.black.withOpacity(0),
+                ),
+              ),
+            ),
+          if (_showOverlayLevel)
+            Positioned(
+              top: 125,
+              left: 0,
+              right: 0,
+              bottom: 560,
+              child: LevelScreenPageState(),
+            ),
+          if (_showOverlayDirection)
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              child: GestureDetector(
+                onTap: _hideDirectionScreenPage,
+                child: Container(
+                  color: Colors.black.withOpacity(0),
+                ),
+              ),
+            ),
+          if (_showOverlayDirection)
+            Positioned(
+              top: 125,
+              left: 0,
+              right: 0,
+              bottom: 390,
+              child: DirectionScreenPageState(),
             ),
           Positioned(
             bottom: 0,
@@ -68,13 +112,10 @@ class _YogaPageState extends State<YogaPageState> {
     );
   }
 
-  bool _showOverlay = false;
+  bool _showOverlayTime = false;
+  bool _showOverlayLevel = false;
+  bool _showOverlayDirection = false;
 
-  void _toggleOverlay() {
-    setState(() {
-      _showOverlay = !_showOverlay;
-    });
-  }
 
   Widget customButton(String text, VoidCallback onPressed) {
     return OutlinedButton(
@@ -82,7 +123,13 @@ class _YogaPageState extends State<YogaPageState> {
         if (text == "Время") {
           _showTimeScreenPage();
         } else {
-          onPressed();
+          if (text == "Уровень") {
+            _showLevelScreenPage();
+          } else {
+            if (text == "Направление") {
+              _showDirectionScreenPage();
+            }
+          }
         }
       },
       style: ButtonStyle(
@@ -92,14 +139,13 @@ class _YogaPageState extends State<YogaPageState> {
           ),
         ),
         side: MaterialStateProperty.all<BorderSide>(
-          BorderSide(color: whiteTextColor, width: 2.0),
+          BorderSide(color: whiteTextColor, width: 1.0),
         ),
         minimumSize: MaterialStateProperty.all(Size(0, 56)),
       ),
       child: Text(text, style: TextStyle(fontSize: 16, color: whiteTextColor)),
     );
   }
-
 
   Widget topPanel() {
     return Container(
@@ -111,9 +157,14 @@ class _YogaPageState extends State<YogaPageState> {
             onTap: _showTimeScreenPage,
             child: customButton("Время", () {}),
           ),
-
-          customButton("Уровень", () {}),
-          customButton("Направление", () {}),
+          GestureDetector(
+            onTap: _showLevelScreenPage,
+            child: customButton("Уровень", () {}),
+          ),
+          GestureDetector(
+            onTap: _showLevelScreenPage,
+            child: customButton("Направление", () {}),
+          ),
         ],
       ),
     );
@@ -121,16 +172,39 @@ class _YogaPageState extends State<YogaPageState> {
 
   void _showTimeScreenPage() {
     setState(() {
-      _showOverlay = true;
+      _showOverlayTime = true;
     });
   }
 
   void _hideTimeScreenPage() {
     setState(() {
-      _showOverlay = false;
+      _showOverlayTime = false;
     });
   }
 
+  void _showLevelScreenPage() {
+    setState(() {
+      _showOverlayLevel = true;
+    });
+  }
+
+  void _hideLevelScreenPage() {
+    setState(() {
+      _showOverlayLevel = false;
+    });
+  }
+
+  void _showDirectionScreenPage() {
+    setState(() {
+      _showOverlayDirection = true;
+    });
+  }
+
+  void _hideDirectionScreenPage() {
+    setState(() {
+      _showOverlayDirection = false;
+    });
+  }
 
   Widget oneYoga() {
     return SizedBox(

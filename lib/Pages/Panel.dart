@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Color PanelColor = Color.fromRGBO(17, 17, 16, 0.7);
+Color PanelColor = Color.fromRGBO(17, 17, 16, 0.6);
 
 class BottomPanel extends StatelessWidget {
   @override

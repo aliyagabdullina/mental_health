@@ -3,7 +3,6 @@ import 'package:Mental_Health/Pages/MainPage.dart';
 import 'package:Mental_Health/Pages/SettingsPage.dart';
 import 'package:Mental_Health/Pages/Panel.dart';
 import 'package:Mental_Health/Pages/YogaPage.dart';
-import 'package:Mental_Health/Pages/open.dart';
 
 void main() {
   runApp(MyApp());
