@@ -5,6 +5,8 @@ import 'package:Mental_Health/Pages/Panel.dart';
 import 'package:Mental_Health/Pages/YogaPage.dart';
 import 'package:Mental_Health/Pages/ProfilePage.dart';
 
+import 'package:image_picker/image_picker.dart';
+
 void main() {
   runApp(MyApp());
 }
