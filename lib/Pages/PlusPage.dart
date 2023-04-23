@@ -5,8 +5,6 @@ Color backgroundColor = Color(0xFFB6B6B6);
 Color whiteTextColor = Color(0xFFFFFFFF);
 Color grayButtomColor = Color(0xFFD9D9D9);
 
-
-
 class PlusPageState extends StatefulWidget {
   PlusPageState({Key? key}) : super(key: key);
 

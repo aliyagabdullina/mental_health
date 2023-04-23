@@ -87,24 +87,33 @@ class _NoticePageState extends State<NoticePageState> {
 
 
     return Container(
-      width: 390,
-      color: backgroundColor,
+      width: double.infinity,
       child: Stack(
-        children: [
+        children: <Widget>[
           Center(
-            child: ListView.separated(
-              scrollDirection: Axis.vertical,
-              separatorBuilder: (BuildContext context, int index) =>
-                  SizedBox(height: 45),
-              itemCount: titles.length,
-              itemBuilder: (BuildContext context, int index) {
-                return _BlockWidget(
-                  text: texts[index % texts.length],
-                  icon: icons[index % icons.length],
-                  title: titles[index % titles.length],
-                );
-              },
+            child: Container(
+              width: 390,
+              color: backgroundColor,
+              child: ListView.separated(
+                scrollDirection: Axis.vertical,
+                separatorBuilder: (BuildContext context, int index) =>
+                    SizedBox(height: 45),
+                itemCount: titles.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return _BlockWidget(
+                    text: texts[index % texts.length],
+                    icon: icons[index % icons.length],
+                    title: titles[index % titles.length],
+                  );
+                },
+              ),
             ),
+          ),
+          Positioned(
+            bottom: 0,
+            width: 430,
+            height: 92,
+            child: BottomPanel(),
           ),
         ],
       ),
