@@ -4,6 +4,11 @@ import 'package:Mental_Health/Pages/SettingsPage.dart';
 import 'package:Mental_Health/Pages/Panel.dart';
 import 'package:Mental_Health/Pages/YogaPage.dart';
 import 'package:Mental_Health/Pages/ProfilePage.dart';
+import 'package:Mental_Health/Pages/NewsPage.dart';
+import 'package:Mental_Health/Pages/PlusPage.dart';
+import 'package:Mental_Health/Pages/MoodPage.dart';
+import 'package:Mental_Health/Pages/VideoPage.dart';
+import 'package:Mental_Health/Pages/NoticePage.dart';
 
 import 'package:image_picker/image_picker.dart';
 
@@ -23,7 +28,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blueGrey,
         backgroundColor: Colors.blueAccent,
       ),
-      home: YogaPageState(),
+      home: NoticePageState(),
     );
   }
 }
