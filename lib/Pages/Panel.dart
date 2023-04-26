@@ -1,3 +1,4 @@
+import 'package:Mental_Health/Pages/NewsPage.dart';
 import 'package:flutter/material.dart';
 import 'package:Mental_Health/Pages/MainPage.dart';
 import 'package:Mental_Health/Pages/PlusPage.dart';

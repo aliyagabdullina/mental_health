@@ -45,4 +45,39 @@ flutter:
     - assets/Images/Training.png
     - assets/Images/Creation.png
     - assets/Icons/settings.png
-    - assets/Icons/statistics.png
+    
+    - assets/Icons/Arrow.png
+    - assets/Icons/Calendar.png
+    - assets/Icons/Calendar2.png
+    - assets/Icons/ArrowRight.png
+    - assets/Icons/SmileAwful.png
+    - assets/Icons/SmileBad.png
+    - assets/Icons/SmileGood.png
+    - assets/Icons/SmileGreat.png
+    - assets/Icons/SmileSoSo.png
+    - assets/Icons/NotionIcons/Care.png
+    - assets/Icons/NotionIcons/Communication.png
+    - assets/Icons/NotionIcons/Creation.png
+    - assets/Icons/NotionIcons/CulturalEvent.png
+    - assets/Icons/NotionIcons/DoingSport.png
+    - assets/Icons/NotionIcons/GoodDeed.png
+    - assets/Icons/NotionIcons/Gratitude.png
+    - assets/Icons/NotionIcons/HealthyNutrition.png
+    - assets/Icons/NotionIcons/HealthySleep.png
+    - assets/Icons/NotionIcons/HeartConversation.png
+    - assets/Icons/NotionIcons/Hobby.png
+    - assets/Icons/NotionIcons/KeepingDiary.png
+    - assets/Icons/NotionIcons/LearningNew.png
+    - assets/Icons/NotionIcons/Meditation.png
+    - assets/Icons/NotionIcons/NetworksLimit.png
+    - assets/Icons/NotionIcons/PleasantAtmosphere.png
+    - assets/Icons/NotionIcons/SolvingProblem.png
+    - assets/Icons/NotionIcons/TimeToRest.png
+    - assets/Icons/NotionIcons/TimeWithFamily.png
+    - assets/Icons/NotionIcons/TimeWithYourself.png
+    - assets/Icons/NotionIcons/TryNewOne.png
+    - assets/Icons/NotionIcons/UsefulHabits.png
+    - assets/Icons/NotionIcons/Walk.png
+    - assets/Icons/NotionIcons/YogaClass.png
+
+
