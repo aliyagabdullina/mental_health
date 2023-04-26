@@ -23,8 +23,39 @@ class _PlusPageState extends State<PlusPageState> {
   }
 
   Widget buildPlusPageContainer() {
-    return Container(
-      //Писать здесь. Может быть вместо контейнера что-то другое
+    return Stack(
+      children: <Widget>[
+        Positioned(
+          bottom: 20,
+          left: 20,
+          child: ElevatedButton(
+            onPressed: () {
+              // Действие, которое будет выполняться при нажатии на кнопку
+            },
+            child: Text("Кнопка 1"),
+          ),
+        ),
+        Positioned(
+          bottom: 20,
+          right: 20,
+          child: ElevatedButton(
+            onPressed: () {
+              // Действие, которое будет выполняться при нажатии на кнопку
+            },
+            child: Text("Кнопка 2"),
+          ),
+        ),
+        Positioned(
+          left: 150,
+          bottom: 100,
+          child: ElevatedButton(
+            onPressed: () {
+              // Действие, которое будет выполняться при нажатии на кнопку
+            },
+            child: Text("Кнопка 3"),
+          ),
+        ),
+      ],
     );
   }
 }

@@ -4,7 +4,7 @@ import 'package:Mental_Health/Pages/SettingsPage.dart';
 import 'package:Mental_Health/Pages/Panel.dart';
 import 'package:Mental_Health/Pages/YogaPage.dart';
 import 'package:Mental_Health/Pages/ProfilePage.dart';
-
+import 'package:Mental_Health/Pages/PlusPage.dart';
 import 'package:image_picker/image_picker.dart';
 
 void main() {
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blueGrey,
         backgroundColor: Colors.blueAccent,
       ),
-      home: YogaPageState(),
+      home: ProfilePageState(),
     );
   }
 }
