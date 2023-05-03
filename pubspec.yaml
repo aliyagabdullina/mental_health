@@ -41,15 +41,15 @@ flutter:
     - assets/Icons/support.png
     - assets/Icons/usingConditions.png
     - assets/Icons/Lotus.png
-    - assets/Images/DayOffer.png
+    - assets/Images/DayOffer.jpg
     - assets/Images/News.png
     - assets/Icons/MainIcon.png
     - assets/Icons/PlusIcon.png
     - assets/Icons/ProfileIcon.png
-    - assets/Images/Yoga.png
-    - assets/Images/Meditation.png
-    - assets/Images/Training.png
-    - assets/Images/Creation.png
+    - assets/Images/Yoga.jpg
+    - assets/Images/Meditation.jpg
+    - assets/Images/Training.jpg
+    - assets/Images/Creation.jpg
     - assets/Icons/settings.png
     - assets/Icons/statistics.png
 
@@ -86,4 +86,15 @@ flutter:
     - assets/Icons/NotionIcons/UsefulHabits.png
     - assets/Icons/NotionIcons/Walk.png
     - assets/Icons/NotionIcons/YogaClass.png
+    - assets/Images/News1.jpg
+    - assets/Images/News3.jpg
+    - assets/Images/News4.jpg
+    - assets/Images/News5.jpg
+    - assets/Images/DayOffer2.jpg
+    - assets/Icons/Video.png
+    - assets/Images/Yoga1.jpg
+    - assets/Images/Yoga3.jpg
+    - assets/Images/Yoga7.jpg
+    - assets/Images/Yoga10.jpg
+
 

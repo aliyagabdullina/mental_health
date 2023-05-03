@@ -33,7 +33,7 @@ class _NewsPageState extends State<NewsPageState> {
             SizedBox(
               height: 90,
             ),
-            _NewsPhotoWidget(image: Image.asset('assets/Images/News.png'),),
+            _NewsPhotoWidget(image: Image.asset('assets/Images/News1.jpg', fit: BoxFit.cover),),
             SizedBox(
               height: 10,
             ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:Mental_Health/Pages/Panel.dart';
 
-Color backgroundColor = Color(0xFFB6B6B6);
 Color whiteTextColor = Color(0xFFFFFFFF);
 Color grayButtomColor = Color(0xFFD9D9D9);
 
@@ -16,7 +15,7 @@ class _PlusPageState extends State<PlusPageState> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backgroundColor,
+      backgroundColor: Colors.black.withOpacity(0.1),
       body: Center(
         child: buildPlusPageContainer(),
       ),

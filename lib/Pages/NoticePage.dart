@@ -189,25 +189,29 @@ class _IconAndTextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Column(
-        children: [
-          ElevatedButton(
-            onPressed: () {
-              // Действие, которое будет выполняться при нажатии на кнопку
-            },
-            child: icon,
-            style: ElevatedButton.styleFrom(
-              shape: CircleBorder(),
-              padding: EdgeInsets.all(20),
-              minimumSize: Size(80, 80),
-              primary: grayButtomColor,
+      child: Container(
+        width: 20,
+        height: 20,
+        child: Column(
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                // Действие, которое будет выполняться при нажатии на кнопку
+              },
+              child: icon,
+              style: ElevatedButton.styleFrom(
+                shape: CircleBorder(),
+                padding: EdgeInsets.all(20),
+                minimumSize: Size(80, 80),
+                primary: grayButtomColor,
+              ),
             ),
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          Text(text, style: TextStyle(color: Color(0xFFF6F6F6), fontSize: 15)),
-        ],
+            SizedBox(
+              height: 5,
+            ),
+            Text(text, style: TextStyle(color: Color(0xFFF6F6F6), fontSize: 15)),
+          ],
+        ),
       ),
     );
   }

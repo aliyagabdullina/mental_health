@@ -33,7 +33,7 @@ class _VideoPageState extends State<VideoPageState> {
             SizedBox(
               height: 90,
             ),
-            _VideoPhotoWidget(image: Image.asset('assets/Images/News.png'),),
+            _VideoPhotoWidget(image: Image.asset('assets/Images/Yoga1.jpg', width: 380, height: 210, fit: BoxFit.cover),),
             SizedBox(
               height: 10,
             ),
@@ -135,6 +135,14 @@ class _VideoPhotoWidget extends StatelessWidget {
           left: 20,
           child: Image.asset('assets/Icons/ArrowRight.png'),
         ),
+        Container(
+          width: 370,
+          height: 370,
+          child: Align(
+            alignment: Alignment.center,
+            child: Image.asset('assets/Icons/Video.png'),
+          ),
+        )
       ],
     );
   }

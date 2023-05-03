@@ -27,13 +27,11 @@ class _LevelScreenPageState extends State<LevelScreenPageState> {
     return Align(
       alignment: Alignment.topLeft,
       child: Container(
-        width: 390,
-        height: 200,
         child: Stack(
           children: [
             Container(
-              width: 390,
-              height: 200,
+              width: double.infinity,
+              height: 160,
               color: backgroundColor,
             ),
             Center(

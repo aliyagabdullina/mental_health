@@ -23,16 +23,14 @@ class _DirectionScreenPageState extends State<DirectionScreenPageState> {
   }
 
   Widget buildDirectionScreenPageContainer() {
-    List<String> times = ["Хатха йога", "Карма йога", "Раджа йога", "Йога нидра", "Инь йога"];
+    List<String> times = ["Хатха йога", "Оздоровительная йога", "Йога нидра", "Фитнес йога", "Стретчинг йога", "Шивананда йога"];
     return Align(
       alignment: Alignment.topLeft,
       child: Container(
-        width: 390,
-        height: 300,
         child: Stack(
           children: [
             Container(
-              width: 390,
+              width: double.infinity,
               height: 300,
               color: backgroundColor,
             ),

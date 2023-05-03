@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:Mental_Health/Pages/Panel.dart';
+import 'package:flutter/rendering.dart';
 
 Color backgroundColor = Color(0xFFB6B6B6);
 Color whiteTextColor = Color(0xFFFFFFFF);
@@ -145,10 +146,13 @@ class _SmileAndTextWidget extends StatelessWidget {
         children: [
           ElevatedButton(
             style: ElevatedButton.styleFrom(
+              padding: EdgeInsets.all(0),
               primary: Colors.transparent,
               elevation: 0,
               shadowColor: Colors.transparent,
             ),
+
+
             onPressed: () {
               // Действие, которое будет выполняться при нажатии на кнопку
             },
@@ -169,12 +173,11 @@ class _TextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 25),
+    return FittedBox(
       child: Text(
-        "Как вы себя чувствуете?",
-        style: TextStyle(color: Color(0xFFF6F6F6), fontSize: 31),
+        'Как вы себя чувствуете?',
+        textDirection: TextDirection.ltr,
+        style: TextStyle(color: Color(0xFFF6F6F6), fontSize: 27, fontWeight: FontWeight.w600),
       ),
     );
   }
