@@ -1,9 +1,9 @@
+import 'package:Mental_Health/main.dart';
 import 'package:flutter/material.dart';
 import 'package:Mental_Health/Pages/Panel.dart';
 
 Color backgroundColor = Color(0xFFB6B6B6);
-Color whiteTextColor = Color(0xFFFFFFFF);
-Color grayButtomColor = Color(0xFFD9D9D9);
+Color greyButtomColor = Color(0xFFD9D9D9);
 
 class NoticePageState extends StatefulWidget {
   NoticePageState({Key? key}) : super(key: key);
@@ -85,7 +85,6 @@ class _NoticePageState extends State<NoticePageState> {
       "Ведение дневника",
     ];
 
-
     return Container(
       width: double.infinity,
       child: Stack(
@@ -94,18 +93,86 @@ class _NoticePageState extends State<NoticePageState> {
             child: Container(
               width: 390,
               color: backgroundColor,
-              child: ListView.separated(
+              child: SingleChildScrollView(
                 scrollDirection: Axis.vertical,
-                separatorBuilder: (BuildContext context, int index) =>
-                    SizedBox(height: 45),
-                itemCount: titles.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return _BlockWidget(
-                    text: texts[index % texts.length],
-                    icon: icons[index % icons.length],
-                    title: titles[index % titles.length],
-                  );
-                },
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 60,
+                    ),
+                    Text(
+                      "Чем вы занимались?",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    _BlockWidget(
+                      text: texts[0],
+                      icon: icons[0],
+                      title: titles[0],
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    _BlockWidget(
+                      text: texts[1],
+                      icon: icons[1],
+                      title: titles[1],
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    _BlockWidget(
+                      text: texts[2],
+                      icon: icons[2],
+                      title: titles[2],
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    _BlockWidget(
+                      text: texts[3],
+                      icon: icons[3],
+                      title: titles[3],
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    _BlockWidget(
+                      text: texts[4],
+                      icon: icons[4],
+                      title: titles[4],
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    _BlockWidget(
+                      text: texts[5],
+                      icon: icons[5],
+                      title: titles[5],
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    _TextNotion(),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    _PhotoWidget(),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    _SaveButton(),
+                    SizedBox(
+                      height: 100,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -118,6 +185,128 @@ class _NoticePageState extends State<NoticePageState> {
         ],
       ),
     );
+  }
+}
+
+class _PhotoWidget extends StatelessWidget {
+  const _PhotoWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 100,
+      width: 390,
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        borderRadius: BorderRadius.circular(15.0),
+        border: Border.all(
+          color: Colors.white,
+          width: 1.5,
+        ),
+      ),
+      child: Column(
+        children: [
+          SizedBox(
+            height: 15,
+          ),
+          Container(
+              width: double.infinity,
+              padding: EdgeInsets.symmetric(horizontal: 25),
+              child: Text('Фото',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold))),
+          SizedBox(
+            height: 17,
+          ),
+          Container(),
+        ],
+      ),
+    );;
+  }
+}
+
+class _TextNotion extends StatelessWidget {
+  const _TextNotion({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      maxLines: 10,
+      minLines: 1,
+      style: TextStyle(
+        color: Colors.white,
+        fontSize: 20,
+      ),
+      textInputAction: TextInputAction.done,
+      cursorColor: Colors.white,
+      textCapitalization: TextCapitalization.sentences,
+      decoration: InputDecoration(
+        labelText: 'Заметка',
+        labelStyle: TextStyle(
+          color: Colors.white,
+          fontSize: 25,
+          fontWeight: FontWeight.bold,
+        ),
+        helperText: 'Нажмите, чтобы добавить заметку',
+        helperStyle: TextStyle(color: Colors.white),
+        contentPadding: EdgeInsets.all(30),
+        border: OutlineInputBorder(),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.black26,
+            width: 2.0,
+          ),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.white,
+            width: 1.5,
+          ),
+          borderRadius: BorderRadius.circular(15),
+        ),
+      ),
+    );
+  }
+}
+
+class _SaveButton extends StatelessWidget {
+  const _SaveButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+        style: ButtonStyle(
+          backgroundColor:
+              MaterialStateProperty.all(backgroundColor),
+          foregroundColor:
+              MaterialStateProperty.all(Colors.white),
+          overlayColor:
+              MaterialStateProperty.all(Colors.white12),
+          elevation: MaterialStateProperty.all(5),
+          padding: MaterialStateProperty.all(
+              EdgeInsets.symmetric(
+                  horizontal: 25, vertical: 15)),
+          shape:
+              MaterialStateProperty.all(RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(40),
+            side: BorderSide(color: Colors.white),
+          )),
+        ),
+        onPressed: () {},
+        child: Text(
+          "Сохранить",
+          style: TextStyle(
+              fontSize: 17, fontWeight: FontWeight.bold),
+        ));
   }
 }
 
@@ -136,14 +325,14 @@ class _BlockWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200.0,
+      height: 210,
       width: 390,
       decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: BorderRadius.circular(15.0),
         border: Border.all(
           color: Colors.white,
-          width: 2.0,
+          width: 1.5,
         ),
       ),
       child: Column(
@@ -156,7 +345,7 @@ class _BlockWidget extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 25),
               child: Text(title,
                   style: TextStyle(
-                      color: Color(0xFFF6F6F6),
+                      color: Colors.white,
                       fontSize: 25,
                       fontWeight: FontWeight.bold))),
           SizedBox(
@@ -190,8 +379,6 @@ class _IconAndTextWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        width: 20,
-        height: 20,
         child: Column(
           children: [
             ElevatedButton(
@@ -203,13 +390,13 @@ class _IconAndTextWidget extends StatelessWidget {
                 shape: CircleBorder(),
                 padding: EdgeInsets.all(20),
                 minimumSize: Size(80, 80),
-                primary: grayButtomColor,
+                primary: greyButtomColor,
               ),
             ),
             SizedBox(
               height: 5,
             ),
-            Text(text, style: TextStyle(color: Color(0xFFF6F6F6), fontSize: 15)),
+            Text(text, style: TextStyle(color: Colors.white, fontSize: 15)),
           ],
         ),
       ),
