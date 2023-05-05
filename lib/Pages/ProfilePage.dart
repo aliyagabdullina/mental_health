@@ -270,6 +270,7 @@ class _ProfilePageState extends State<ProfilePageState> {
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         primary: buttonColor,
+                        elevation: 0,
                       ),
                       onPressed: () {
                         setState(() {

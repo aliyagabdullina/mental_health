@@ -34,7 +34,7 @@ class _PlusPageState extends State<PlusPageState> {
         ),
         _ButtomWidget(right: 200, left: 0, bottom: 140, text: 'Вчера', icon: Image.asset('assets/Icons/Arrow.png'),),
         _ButtomWidget(right: 0, left: 200, bottom: 140, text: 'Другой день', icon: Image.asset('assets/Icons/Calendar2.png'),),
-        _ButtomWidget(right: 0, left: MediaQuery.of(context).size.width / 2 - 220, bottom: 220, text: 'Сегодня', icon: Image.asset('assets/Icons/Calendar.png'),),
+        _ButtomWidget(right: 0, left: MediaQuery.of(context).size.width / 2 - 200, bottom: 220, text: 'Сегодня', icon: Image.asset('assets/Icons/Calendar.png'),),
 
       ],
     );
