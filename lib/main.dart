@@ -4,7 +4,6 @@ import 'package:Mental_Health/Pages/SettingsPage.dart';
 import 'package:Mental_Health/Pages/Panel.dart';
 import 'package:Mental_Health/Pages/YogaPage.dart';
 import 'package:Mental_Health/Pages/ProfilePage.dart';
-
 import 'package:Mental_Health/Pages/NewsPage.dart';
 import 'package:Mental_Health/Pages/PlusPage.dart';
 import 'package:Mental_Health/Pages/MoodPage.dart';
