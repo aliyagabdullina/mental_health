@@ -8,13 +8,11 @@ PODS:
   - video_player_avfoundation (0.0.1):
     - Flutter
 
-
 DEPENDENCIES:
   - Flutter (from `Flutter`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/ios`)
   - video_player_avfoundation (from `.symlinks/plugins/video_player_avfoundation/ios`)
-
 
 EXTERNAL SOURCES:
   Flutter:
@@ -32,7 +30,6 @@ SPEC CHECKSUMS:
   shared_preferences_foundation: 986fc17f3d3251412d18b0265f9c64113a8c2472
   video_player_avfoundation: 81e49bb3d9fb63dccf9fa0f6d877dc3ddbeac126
 
-
-PODFILE CHECKSUM: ef19549a9bc3046e7bb7d2fab4d021637c0c58a3
+PODFILE CHECKSUM: 40c1d63bf1ee96165049bd31cfe2874d47c26a76
 
 COCOAPODS: 1.12.0
