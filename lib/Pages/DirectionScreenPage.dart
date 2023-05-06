@@ -69,6 +69,7 @@ class _DirectionScreenPageState extends State<DirectionScreenPageState> {
             borderRadius: BorderRadius.circular(5.0),
           ),
         ),
+
         child: Text(
           text,
           style: TextStyle(fontSize: 16, color: whiteTextColor),

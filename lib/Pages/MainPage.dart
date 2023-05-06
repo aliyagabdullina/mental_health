@@ -4,6 +4,8 @@ import 'package:Mental_Health/Pages/YogaPage.dart';
 import 'package:Mental_Health/Pages/MeditationPage.dart';
 import 'package:Mental_Health/Pages/CreationPage.dart';
 import 'package:Mental_Health/Pages/TrainingPage.dart';
+import 'package:Mental_Health/Pages/NewsPage.dart';
+import 'package:Mental_Health/Pages/StatisticsPage.dart';
 
 Color backgroundColor = Color(0xFFB6B6B6);
 Color whiteTextColor = Color(0xFFFFFFFF);
@@ -25,7 +27,8 @@ class oneClass extends StatelessWidget {
   final Widget page;
   final String text;
 
-  const oneClass({Key? key, required this.image, required this.text, required this.page})
+  const oneClass(
+      {Key? key, required this.image, required this.text, required this.page})
       : super(key: key);
 
   Widget build(BuildContext context) {
@@ -99,10 +102,14 @@ class _MainPageState extends State<MainPageState> {
         Container(
             width: double.infinity,
             padding: EdgeInsets.symmetric(horizontal: 25),
-            child: Text("Занятия для вас",
-                style: TextStyle(fontSize: 23,
-                    color: grayButtomColor,
-                    fontWeight: FontWeight.w800), textAlign: TextAlign.left, )),
+            child: Text(
+              "Занятия для вас",
+              style: TextStyle(
+                  fontSize: 23,
+                  color: grayButtomColor,
+                  fontWeight: FontWeight.w800),
+              textAlign: TextAlign.left,
+            )),
         SizedBox(height: 10),
         classesScroll(),
       ],
@@ -168,11 +175,22 @@ class _MainPageState extends State<MainPageState> {
             width: double.infinity,
             padding: EdgeInsets.symmetric(horizontal: 25),
             child: Text("Предложение дня",
-                style: TextStyle(fontSize: 23, color: grayButtomColor,
-                    fontWeight: FontWeight.w800), textAlign: TextAlign.left)),
+                style: TextStyle(
+                    fontSize: 23,
+                    color: grayButtomColor,
+                    fontWeight: FontWeight.w800),
+                textAlign: TextAlign.left)),
         SizedBox(height: 10),
         SizedBox(
-          child: _DayOffer(),
+          child: _DayOffer(
+            image:Image.asset(
+                'assets/Images/DayOffer2.jpg',
+                width: 380,
+                height: 210,
+                fit: BoxFit.cover),
+            text: "Начни день с йоги",
+            page: YogaPageState(),
+          ),
         ),
       ],
     );
@@ -185,31 +203,38 @@ class _MainPageState extends State<MainPageState> {
             width: double.infinity,
             padding: EdgeInsets.symmetric(horizontal: 25),
             child: Text("Интересное",
-                style: TextStyle(fontSize: 23, color: grayButtomColor,
-                    fontWeight: FontWeight.w800), textAlign: TextAlign.left)),
+                style: TextStyle(
+                    fontSize: 23,
+                    color: grayButtomColor,
+                    fontWeight: FontWeight.w800),
+                textAlign: TextAlign.left)),
         SizedBox(height: 10),
         oneNews(
           image: Image.asset('assets/Images/News1.jpg',
               width: 380, height: 210, fit: BoxFit.cover),
           text: "Новость 1",
+          page: NewsPageState(),
         ),
         SizedBox(height: 20),
         oneNews(
           image: Image.asset('assets/Images/News3.jpg',
               width: 380, height: 210, fit: BoxFit.cover),
           text: "Новость 2",
+          page: NewsPageState(),
         ),
         SizedBox(height: 20),
         oneNews(
           image: Image.asset('assets/Images/News4.jpg',
               width: 380, height: 210, fit: BoxFit.cover),
           text: "Новость 3",
+          page: NewsPageState(),
         ),
         SizedBox(height: 20),
         oneNews(
           image: Image.asset('assets/Images/News5.jpg',
               width: 380, height: 210, fit: BoxFit.cover),
           text: "Новость 4",
+          page: NewsPageState(),
         ),
         SizedBox(height: 40),
       ],
@@ -218,35 +243,40 @@ class _MainPageState extends State<MainPageState> {
 }
 
 class _DayOffer extends StatelessWidget {
+  final Image image;
+  final String text;
+  final Widget page;
+
   const _DayOffer({
     super.key,
+    required this.page,
+    required this.image,
+    required this.text,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 380,
-      height: 210,
-      child: Stack(
-        children: [
-          Image.asset(
-            'assets/Images/DayOffer2.jpg',
-            width: 380,
-            height: 210,
-            fit: BoxFit.cover,
-          ),
-          Align(
-            alignment: Alignment.topLeft,
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Text("Начни с йоги",
-                  style: TextStyle(
-                      fontSize: 30,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400)),
+    return GestureDetector(
+      onTap: () => navigateToPage(context, page),
+      child: Container(
+        width: 380,
+        height: 210,
+        child: Stack(
+          children: [
+            image,
+            Align(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Text(text,
+                    style: TextStyle(
+                        fontSize: 30,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400)),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -255,43 +285,50 @@ class _DayOffer extends StatelessWidget {
 class oneNews extends StatelessWidget {
   final Image image;
   final String text;
+  final Widget page;
 
   const oneNews({
     super.key,
     required this.image,
     required this.text,
+    required this.page,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 380,
-      height: 210,
-      child: Stack(
-        children: [
-          Container(
-            child: image,
+    return GestureDetector(
+      onTap: () => navigateToPage(context, page),
+      child: Center(
+        child: Container(
+          width: 380,
+          height: 210,
+          child: Stack(
+            children: [
+              Container(
+                child: image,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Text(text,
+                    style: TextStyle(
+                        fontSize: 30,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400)),
+              ),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text("Читать далее",
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w400)),
+                ),
+              ),
+            ],
           ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Text(text,
-                style: TextStyle(
-                    fontSize: 30,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w400)),
-          ),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Text("Читать далее",
-                  style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400)),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

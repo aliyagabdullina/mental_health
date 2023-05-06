@@ -110,7 +110,8 @@ class _NewsPhotoWidget extends StatelessWidget {
         Positioned(
           top: 20,
           left: 20,
-          child: Image.asset('assets/Icons/ArrowRight.png'),
+          child: TextButton(onPressed: () { Navigator.pop(context);},
+          child: Image.asset('assets/Icons/ArrowRight.png')),
         ),
       ],
     );
