@@ -125,6 +125,35 @@ class _ProfilePageState extends State<ProfilePageState> {
           SizedBox(height: 20),
           Row(
             children: [
+              Padding(
+                padding: EdgeInsets.all(15),
+                child: Align(
+                  alignment: Alignment.bottomRight,
+                  child: Image.asset('assets/Icons/settings.png'),
+                ),
+              ),
+              Row(
+                children: [
+                  SizedBox(width: 15),
+                  avatarImage(),
+                  SizedBox(width: 15),
+                  textFieldName(),
+
+                  SizedBox(
+                    width: 50,
+                    height: 50,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: buttonColor,
+                        elevation: 0,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _name = _nameController.text;
+                        });
+                      },
+                      child: Icon(Icons.check),
+                    ),
               avatarImage(),
               SizedBox(width: 15),
               textFieldName(),
