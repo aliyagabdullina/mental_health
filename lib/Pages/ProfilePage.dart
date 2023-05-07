@@ -6,12 +6,12 @@ import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:Mental_Health/Pages/Panel.dart';
 import 'package:Mental_Health/Pages/StatisticsPage.dart';
-import 'package:http/http.dart' as http;
 
 Color backgroundColor = Color(0xFFB6B6B6);
 Color whiteTextColor = Color(0xFFFFFFFF);
 Color buttonColor = Color(0xFFB6B6B6);
 Color profileColor = Color.fromRGBO(0, 0, 0, 0.4);
+String _name = "";
 
 class ProfilePageState extends StatefulWidget {
   ProfilePageState({Key? key}) : super(key: key);
@@ -21,8 +21,7 @@ class ProfilePageState extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePageState> {
-  late TextEditingController _nameController;
-  String _name = "";
+  final _nameController = TextEditingController();
   List<String> _rectangles = [
     'Rectangle 1',
     'Rectangle 2',
@@ -35,16 +34,7 @@ class _ProfilePageState extends State<ProfilePageState> {
     'Rectangle 9',
     'Rectangle 10'
   ];
-
-  Future<http.Response> createUser(String? name, String? photo) async {
-    final request =
-        http.MultipartRequest('POST', Uri.parse('http://localhost:8081/users'));
-    request.fields['name'] = name!;
-    var pic = await http.MultipartFile.fromPath('photo', photo!);
-    request.files.add(pic);
-    final response = await request.send();
-    return http.Response.fromStream(response);
-  }
+  File? _image = null;
 
   Widget avatarImage() {
     return GestureDetector(
@@ -107,13 +97,13 @@ class _ProfilePageState extends State<ProfilePageState> {
                             ),
                           )
                         : Icon(
-                            Icons.camera_alt,
+                            Icons.camera,
                             size: 30,
                             color: whiteTextColor,
                           );
                   } else {
                     return Icon(
-                      Icons.camera_alt,
+                      Icons.camera,
                       size: 30,
                       color: whiteTextColor,
                     );
@@ -127,10 +117,19 @@ class _ProfilePageState extends State<ProfilePageState> {
   @override
   void initState() {
     super.initState();
-    _nameController = TextEditingController(text: _name);
+    _nameController.text = _name;
+    _nameController.addListener(_changeName);
   }
 
-  File? _image;
+  @override
+  void dispose() {
+    _nameController.dispose();
+    super.dispose();
+  }
+
+  _changeName() {
+    setState(() => _name = _nameController.text);
+  }
 
   Future<void> _getImageFromGallery() async {
     final pickedFile =
@@ -176,7 +175,7 @@ class _ProfilePageState extends State<ProfilePageState> {
         cursorColor: Colors.white,
         textCapitalization: TextCapitalization.sentences,
         decoration: InputDecoration(
-          hintText: "Введите имя",
+          hintText: _name == "" ? "Введите имя" : _name,
           hintStyle: TextStyle(
             color: Colors.white,
             fontSize: 20,

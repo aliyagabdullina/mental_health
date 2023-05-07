@@ -1,10 +1,68 @@
+import 'dart:io';
+
 import 'package:Mental_Health/main.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+
 import 'package:Mental_Health/Pages/Panel.dart';
 import 'package:Mental_Health/Pages/ProfilePage.dart';
 
 Color backgroundColor = Color(0xFFB6B6B6);
-Color greyButtomColor = Color(0xFFD9D9D9);
+Color greyButtonColor = Color(0xFFD9D9D9);
+int indexText = 0;
+int indexIcon = 0;
+List<Image> icons = [
+  Image.asset('assets/Icons/NotionIcons/DoingSport.png'),
+  Image.asset('assets/Icons/NotionIcons/Walk.png'),
+  Image.asset('assets/Icons/NotionIcons/HealthySleep.png'),
+  Image.asset('assets/Icons/NotionIcons/HealthyNutrition.png'),
+  Image.asset('assets/Icons/NotionIcons/Meditation.png'),
+  Image.asset('assets/Icons/NotionIcons/Gratitude.png'),
+  Image.asset('assets/Icons/NotionIcons/GoodDeed.png'),
+  Image.asset('assets/Icons/NotionIcons/YogaClass.png'),
+  Image.asset('assets/Icons/NotionIcons/Communication.png'),
+  Image.asset('assets/Icons/NotionIcons/TimeWithFamily.png'),
+  Image.asset('assets/Icons/NotionIcons/HeartConversation.png'),
+  Image.asset('assets/Icons/NotionIcons/SolvingProblem.png'),
+  Image.asset('assets/Icons/NotionIcons/LearningNew.png'),
+  Image.asset('assets/Icons/NotionIcons/NetworksLimit.png'),
+  Image.asset('assets/Icons/NotionIcons/PleasantAtmosphere.png'),
+  Image.asset('assets/Icons/NotionIcons/TimeToRest.png'),
+  Image.asset('assets/Icons/NotionIcons/Hobby.png'),
+  Image.asset('assets/Icons/NotionIcons/Creation.png'),
+  Image.asset('assets/Icons/NotionIcons/CulturalEvent.png'),
+  Image.asset('assets/Icons/NotionIcons/TryNewOne.png'),
+  Image.asset('assets/Icons/NotionIcons/Care.png'),
+  Image.asset('assets/Icons/NotionIcons/TimeWithYourself.png'),
+  Image.asset('assets/Icons/NotionIcons/UsefulHabits.png'),
+  Image.asset('assets/Icons/NotionIcons/KeepingDiary.png'),
+];
+List<String> texts = [
+  "Занятие спортом",
+  "Прогулка",
+  "Здоровый сон",
+  "Полезное питание",
+  "Медитация",
+  "Благодарность",
+  "Доброе дело",
+  "Занятие йогой",
+  "Общение с людьми",
+  "Время с семьей",
+  "Разговор по душам",
+  "Решение проблемы",
+  "Изучение нового",
+  "Лимит соц сетей",
+  "Приятная атмосфера",
+  "Время на отдых",
+  "Хобби",
+  "Творчество",
+  "Культурное событие",
+  "Попробовать новое",
+  "Уход",
+  "Время с собой",
+  "Полезные привычки",
+  "Ведение дневника",
+];
 
 class NoticePageState extends StatefulWidget {
   NoticePageState({Key? key}) : super(key: key);
@@ -32,58 +90,6 @@ class _NoticePageState extends State<NoticePageState> {
       "Производительность",
       "Яркость жизни",
       "Забота о себе"
-    ];
-    List<Image> icons = [
-      Image.asset('assets/Icons/NotionIcons/DoingSport.png'),
-      Image.asset('assets/Icons/NotionIcons/Walk.png'),
-      Image.asset('assets/Icons/NotionIcons/HealthySleep.png'),
-      Image.asset('assets/Icons/NotionIcons/HealthyNutrition.png'),
-      Image.asset('assets/Icons/NotionIcons/Meditation.png'),
-      Image.asset('assets/Icons/NotionIcons/Gratitude.png'),
-      Image.asset('assets/Icons/NotionIcons/GoodDeed.png'),
-      Image.asset('assets/Icons/NotionIcons/YogaClass.png'),
-      Image.asset('assets/Icons/NotionIcons/Communication.png'),
-      Image.asset('assets/Icons/NotionIcons/TimeWithFamily.png'),
-      Image.asset('assets/Icons/NotionIcons/HeartConversation.png'),
-      Image.asset('assets/Icons/NotionIcons/SolvingProblem.png'),
-      Image.asset('assets/Icons/NotionIcons/LearningNew.png'),
-      Image.asset('assets/Icons/NotionIcons/NetworksLimit.png'),
-      Image.asset('assets/Icons/NotionIcons/PleasantAtmosphere.png'),
-      Image.asset('assets/Icons/NotionIcons/TimeToRest.png'),
-      Image.asset('assets/Icons/NotionIcons/Hobby.png'),
-      Image.asset('assets/Icons/NotionIcons/Creation.png'),
-      Image.asset('assets/Icons/NotionIcons/CulturalEvent.png'),
-      Image.asset('assets/Icons/NotionIcons/TryNewOne.png'),
-      Image.asset('assets/Icons/NotionIcons/Care.png'),
-      Image.asset('assets/Icons/NotionIcons/TimeWithYourself.png'),
-      Image.asset('assets/Icons/NotionIcons/UsefulHabits.png'),
-      Image.asset('assets/Icons/NotionIcons/KeepingDiary.png'),
-    ];
-    List<String> texts = [
-      "Занятие спортом",
-      "Прогулка",
-      "Здоровый сон",
-      "Полезное питание",
-      "Медитация",
-      "Благодарность",
-      "Доброе дело",
-      "Занятие йогой",
-      "Общение с людьми",
-      "Время с семьей",
-      "Разговор по душам",
-      "Решение проблемы",
-      "Изучение нового",
-      "Лимит соц сетей",
-      "Приятная атмосфера",
-      "Время на отдых",
-      "Хобби",
-      "Творчество",
-      "Культурное событие",
-      "Попробовать новое",
-      "Уход",
-      "Время с собой",
-      "Полезные привычки",
-      "Ведение дневника",
     ];
 
     return Container(
@@ -113,48 +119,36 @@ class _NoticePageState extends State<NoticePageState> {
                       height: 20,
                     ),
                     _BlockWidget(
-                      text: texts[0],
-                      icon: icons[0],
                       title: titles[0],
                     ),
                     SizedBox(
                       height: 20,
                     ),
                     _BlockWidget(
-                      text: texts[1],
-                      icon: icons[1],
                       title: titles[1],
                     ),
                     SizedBox(
                       height: 20,
                     ),
                     _BlockWidget(
-                      text: texts[2],
-                      icon: icons[2],
                       title: titles[2],
                     ),
                     SizedBox(
                       height: 20,
                     ),
                     _BlockWidget(
-                      text: texts[3],
-                      icon: icons[3],
                       title: titles[3],
                     ),
                     SizedBox(
                       height: 20,
                     ),
                     _BlockWidget(
-                      text: texts[4],
-                      icon: icons[4],
                       title: titles[4],
                     ),
                     SizedBox(
                       height: 20,
                     ),
                     _BlockWidget(
-                      text: texts[5],
-                      icon: icons[5],
                       title: titles[5],
                     ),
                     SizedBox(
@@ -189,10 +183,23 @@ class _NoticePageState extends State<NoticePageState> {
   }
 }
 
-class _PhotoWidget extends StatelessWidget {
-  const _PhotoWidget({
-    super.key,
-  });
+class _PhotoWidget extends StatefulWidget {
+  const _PhotoWidget({Key? key}) : super(key: key);
+
+  @override
+  _PhotoWidgetState createState() => _PhotoWidgetState();
+}
+
+class _PhotoWidgetState extends State<_PhotoWidget> {
+  File? _imageFile = null;
+
+  Future<void> _pickImage() async {
+    final pickedFile =
+        await ImagePicker().getImage(source: ImageSource.gallery);
+    setState(() {
+      _imageFile = pickedFile != null ? File(pickedFile.path) : null;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -209,24 +216,35 @@ class _PhotoWidget extends StatelessWidget {
       ),
       child: Column(
         children: [
-          SizedBox(
-            height: 15,
+          Expanded(
+            child: GestureDetector(
+              onTap: _pickImage,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15.0),
+                  color: _imageFile == null ? Colors.grey[450] : null,
+                  image: _imageFile != null
+                      ? DecorationImage(
+                          image: FileImage(_imageFile!), fit: BoxFit.cover)
+                      : null,
+                ),
+                child: _imageFile == null
+                    ? Column(
+                    children: [SizedBox(height: 15,), Container(
+                        width: double.infinity,
+                        padding: EdgeInsets.symmetric(horizontal: 25),
+                        child: Text('Фото',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold))),])
+                    : null,
+              ),
+            ),
           ),
-          Container(
-              width: double.infinity,
-              padding: EdgeInsets.symmetric(horizontal: 25),
-              child: Text('Фото',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold))),
-          SizedBox(
-            height: 17,
-          ),
-          Container(),
         ],
       ),
-    );;
+    );
   }
 }
 
@@ -286,18 +304,13 @@ class _SaveButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
         style: ButtonStyle(
-          backgroundColor:
-              MaterialStateProperty.all(backgroundColor),
-          foregroundColor:
-              MaterialStateProperty.all(Colors.white),
-          overlayColor:
-              MaterialStateProperty.all(Colors.white12),
+          backgroundColor: MaterialStateProperty.all(backgroundColor),
+          foregroundColor: MaterialStateProperty.all(Colors.white),
+          overlayColor: MaterialStateProperty.all(Colors.white12),
           elevation: MaterialStateProperty.all(5),
           padding: MaterialStateProperty.all(
-              EdgeInsets.symmetric(
-                  horizontal: 25, vertical: 15)),
-          shape:
-              MaterialStateProperty.all(RoundedRectangleBorder(
+              EdgeInsets.symmetric(horizontal: 25, vertical: 15)),
+          shape: MaterialStateProperty.all(RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(40),
             side: BorderSide(color: Colors.white),
           )),
@@ -310,22 +323,17 @@ class _SaveButton extends StatelessWidget {
         },
         child: Text(
           "Сохранить",
-          style: TextStyle(
-              fontSize: 17, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
         ));
   }
 }
 
 class _BlockWidget extends StatelessWidget {
   final String title;
-  final String text;
-  final Image icon;
 
   const _BlockWidget({
     super.key,
     required this.title,
-    required this.text,
-    required this.icon,
   });
 
   @override
@@ -359,10 +367,14 @@ class _BlockWidget extends StatelessWidget {
           ),
           Row(
             children: [
-              _IconAndTextWidget(icon: icon, text: text),
-              _IconAndTextWidget(icon: icon, text: text),
-              _IconAndTextWidget(icon: icon, text: text),
-              _IconAndTextWidget(icon: icon, text: text),
+              _IconAndTextWidget(
+                  icon: icons[indexIcon++], text: texts[indexText++]),
+              _IconAndTextWidget(
+                  icon: icons[indexIcon++], text: texts[indexText++]),
+              _IconAndTextWidget(
+                  icon: icons[indexIcon++], text: texts[indexText++]),
+              _IconAndTextWidget(
+                  icon: icons[indexIcon++], text: texts[indexText++]),
             ],
           )
         ],
@@ -396,7 +408,7 @@ class _IconAndTextWidget extends StatelessWidget {
                 shape: CircleBorder(),
                 padding: EdgeInsets.all(20),
                 minimumSize: Size(80, 80),
-                primary: greyButtomColor,
+                primary: greyButtonColor,
               ),
             ),
             SizedBox(

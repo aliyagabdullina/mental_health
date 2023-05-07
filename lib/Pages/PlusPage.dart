@@ -16,7 +16,7 @@ class _PlusPageState extends State<PlusPageState> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black.withOpacity(0.1),
+      backgroundColor: Colors.grey.withOpacity(0.6),
       body: Center(
         child: buildPlusPageContainer(),
       ),
