@@ -17,11 +17,14 @@ class BottomPanel extends StatelessWidget {
 
   void navigateToPlusPage(BuildContext context) {
     Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (_) =>
-                PlusPageState())); // replace MainPageState with your desired state
+      context,
+      PageRouteBuilder(
+        opaque: false,
+        pageBuilder: (_, __, ___) => PlusPageState(),
+      ),
+    );
   }
+
 
   void navigateToProfilePage(BuildContext context) {
     Navigator.push(
