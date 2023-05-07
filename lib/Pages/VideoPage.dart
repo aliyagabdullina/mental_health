@@ -1,6 +1,7 @@
 import 'package:Mental_Health/Pages/ProfilePage.dart';
 import 'package:flutter/material.dart';
 import 'package:Mental_Health/Pages/Panel.dart';
+import 'package:Mental_Health/Pages/YogaPage.dart';
 
 Color backgroundColor = Color(0xFFB6B6B6);
 Color whiteTextColor = Color(0xFFFFFFFF);
@@ -33,7 +34,7 @@ class _VideoPageState extends State<VideoPageState> {
             SizedBox(
               height: 90,
             ),
-            _VideoPhotoWidget(image: Image.asset('assets/Images/News.png'),),
+            _VideoPhotoWidget(image: Image.asset('assets/Images/Yoga1.jpg', width: 380, height: 210, fit: BoxFit.cover),),
             SizedBox(
               height: 10,
             ),
@@ -130,11 +131,22 @@ class _VideoPhotoWidget extends StatelessWidget {
           height: 370,
           child: image,
         ),
-        Positioned(
-          top: 20,
-          left: 20,
-          child: Image.asset('assets/Icons/ArrowRight.png'),
+        TextButton(
+          onPressed: () { Navigator.pop(context);},
+          child: Positioned(
+            top: 20,
+            left: 20,
+            child: Image.asset('assets/Icons/ArrowRight.png'),
+          ),
         ),
+        Container(
+          width: 370,
+          height: 370,
+          child: Align(
+            alignment: Alignment.center,
+            child: Image.asset('assets/Icons/Video.png'),
+          ),
+        )
       ],
     );
   }

@@ -33,7 +33,7 @@ class _NewsPageState extends State<NewsPageState> {
             SizedBox(
               height: 90,
             ),
-            _NewsPhotoWidget(image: Image.asset('assets/Images/News.png'),),
+            _NewsPhotoWidget(image: Image.asset('assets/Images/News1.jpg', fit: BoxFit.cover),),
             SizedBox(
               height: 10,
             ),
@@ -108,9 +108,10 @@ class _NewsPhotoWidget extends StatelessWidget {
           child: image,
         ),
         Positioned(
-          top: 20,
-          left: 20,
-          child: Image.asset('assets/Icons/ArrowRight.png'),
+          top: 10,
+          left: 10,
+          child: TextButton(onPressed: () { Navigator.pop(context);},
+          child: Image.asset('assets/Icons/ArrowRight.png')),
         ),
       ],
     );

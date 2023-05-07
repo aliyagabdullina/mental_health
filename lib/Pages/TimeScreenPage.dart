@@ -27,12 +27,10 @@ class _TimeScreenPageState extends State<TimeScreenPageState> {
     return Align(
       alignment: Alignment.topLeft,
       child: Container(
-        width: 390,
-        height: 200,
         child: Stack(
           children: [
             Container(
-              width: 390,
+              width: double.infinity,
               height: 200,
               color: backgroundColor,
             ),

@@ -46,9 +46,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blueGrey,
         backgroundColor: Colors.blueAccent,
       ),
-      home: VideoPlayerWidget(
-        videoUrl:
-            'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
+      home: MainPageState(
+
       ),
     );
   }

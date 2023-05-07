@@ -3,6 +3,7 @@ import 'package:Mental_Health/Pages/Panel.dart';
 import 'package:Mental_Health/Pages/TimeScreenPage.dart';
 import 'package:Mental_Health/Pages/LevelScreenPage.dart';
 import 'package:Mental_Health/Pages/DirectionScreenPage.dart';
+import 'package:Mental_Health/Pages/VideoPage.dart';
 
 Color backgroundColor = Color(0xFFB6B6B6);
 Color whiteTextColor = Color(0xFFFFFFFF);
@@ -53,7 +54,7 @@ class _YogaPageState extends State<YogaPageState> {
             ),
           if (_showOverlayTime)
             Positioned(
-              top: 125,
+              top: 135,
               left: 0,
               right: 0,
               bottom: 510,
@@ -74,7 +75,7 @@ class _YogaPageState extends State<YogaPageState> {
             ),
           if (_showOverlayLevel)
             Positioned(
-              top: 125,
+              top: 135,
               left: 0,
               right: 0,
               bottom: 560,
@@ -95,7 +96,7 @@ class _YogaPageState extends State<YogaPageState> {
             ),
           if (_showOverlayDirection)
             Positioned(
-              top: 125,
+              top: 135,
               left: 0,
               right: 0,
               bottom: 390,
@@ -116,7 +117,6 @@ class _YogaPageState extends State<YogaPageState> {
   bool _showOverlayLevel = false;
   bool _showOverlayDirection = false;
 
-
   Widget customButton(String text, VoidCallback onPressed) {
     return OutlinedButton(
       onPressed: () {
@@ -133,6 +133,7 @@ class _YogaPageState extends State<YogaPageState> {
         }
       },
       style: ButtonStyle(
+        padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(20)),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20.0),
@@ -149,7 +150,7 @@ class _YogaPageState extends State<YogaPageState> {
 
   Widget topPanel() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -206,36 +207,130 @@ class _YogaPageState extends State<YogaPageState> {
     });
   }
 
-  Widget oneYoga() {
-    return SizedBox(
-      width: 350,
-      height: 210,
-      child: Image.asset(
-        'assets/Images/News.png',
-        width: 350,
-        height: 210,
-      ),
-    );
-  }
 
   Widget yoga() {
     return Column(
       children: <Widget>[
-        oneYoga(),
-        SizedBox(height: 25),
-        oneYoga(),
-        SizedBox(height: 25),
-        oneYoga(),
-        SizedBox(height: 25),
-        oneYoga(),
-        SizedBox(height: 25),
-        oneYoga(),
-        SizedBox(height: 25),
-        oneYoga(),
-        SizedBox(height: 25),
-        oneYoga(),
-        SizedBox(height: 25),
+        oneVideos(
+          image: Image.asset('assets/Images/Yoga1.jpg',
+              width: 380, height: 210, fit: BoxFit.cover),
+          text: "Хатха йога",
+          text1: "Новичок ",
+          text2: "10 мин",
+        ),
+        SizedBox(height: 20),
+        oneVideos(
+          image: Image.asset('assets/Images/Yoga7.jpg',
+              width: 380, height: 210, fit: BoxFit.cover),
+          text: "Оздоровительная йога",
+          text1: "Продолжающий ",
+          text2: "20 мин",
+        ),
+        SizedBox(height: 20),
+        oneVideos(
+          image: Image.asset('assets/Images/DayOffer2.jpg',
+              width: 380, height: 210, fit: BoxFit.cover),
+          text: "Йога нидра",
+          text1: "Средний ",
+          text2: "15 мин",
+        ),
+        SizedBox(height: 20),
+        oneVideos(
+          image: Image.asset('assets/Images/News1.jpg',
+              width: 380, height: 210, fit: BoxFit.cover),
+          text: "Фитнес йога",
+          text1: "Средний ",
+          text2: "25 мин",
+        ),
+        SizedBox(height: 20),
+        oneVideos(
+          image: Image.asset('assets/Images/Yoga3.jpg',
+              width: 380, height: 210, fit: BoxFit.cover),
+          text: "Стретчинг йога",
+          text1: "Продолжающий ",
+          text2: "40 мин",
+        ),
+        SizedBox(height: 20),
+        oneVideos(
+          image: Image.asset('assets/Images/Yoga10.jpg',
+              width: 380, height: 210, fit: BoxFit.cover),
+          text: "Шивананда йога",
+          text1: "Продолжающий ",
+          text2: "35 мин",
+        ),
+        SizedBox(height: 58),
       ],
+    );
+  }
+}
+
+class oneVideos extends StatelessWidget {
+  final Image image;
+  final String text;
+  final String text1;
+  final String text2;
+
+  const oneVideos({
+    super.key,
+    required this.image,
+    required this.text,
+    required this.text1,
+    required this.text2,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => VideoPageState()),
+        );
+      },
+      child: Container(
+        width: 380,
+        height: 210,
+        child: Stack(
+          children: [
+            Container(
+              child: image,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Text(text,
+                  style: TextStyle(
+                      fontSize: 30,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400)),
+            ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(text1,
+                        style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w400)),
+                    Text(text2,
+                        style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w400)),
+                  ],
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.center,
+              child: Image.asset('assets/Icons/Video.png'),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

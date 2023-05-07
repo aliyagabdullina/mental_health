@@ -4,9 +4,12 @@ import 'package:Mental_Health/Pages/YogaPage.dart';
 import 'package:Mental_Health/Pages/MeditationPage.dart';
 import 'package:Mental_Health/Pages/CreationPage.dart';
 import 'package:Mental_Health/Pages/TrainingPage.dart';
+import 'package:Mental_Health/Pages/NewsPage.dart';
+import 'package:Mental_Health/Pages/StatisticsPage.dart';
 
 Color backgroundColor = Color(0xFFB6B6B6);
 Color whiteTextColor = Color(0xFFFFFFFF);
+Color grayButtomColor = Color(0xFF474A51);
 
 class MainPageState extends StatefulWidget {
   MainPageState({Key? key}) : super(key: key);
@@ -22,15 +25,35 @@ void navigateToPage(BuildContext context, Widget page) {
 class oneClass extends StatelessWidget {
   final Image image;
   final Widget page;
+  final String text;
 
-  const oneClass({Key? key, required this.image, required this.page})
+  const oneClass(
+      {Key? key, required this.image, required this.text, required this.page})
       : super(key: key);
 
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => navigateToPage(context, page),
       // add this onTap property
-      child: Container(width: 253.0, height: 253.0, child: image),
+      child: Container(
+          width: 253.0,
+          height: 253.0,
+          child: Stack(
+            children: [
+              image,
+              Align(
+                alignment: Alignment.bottomLeft,
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text(text,
+                      style: TextStyle(
+                          fontSize: 30,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w400)),
+                ),
+              ),
+            ],
+          )),
     );
   }
 }
@@ -56,9 +79,9 @@ class _MainPageState extends State<MainPageState> {
             scrollDirection: Axis.vertical,
             children: [
               classes(),
-              SizedBox(height: 30),
+              SizedBox(height: 20),
               dailyOffer(),
-              SizedBox(height: 30),
+              SizedBox(height: 20),
               news(),
             ],
           ),
@@ -75,9 +98,19 @@ class _MainPageState extends State<MainPageState> {
 
   Widget classes() {
     return Column(
-      children: <Widget>[
-        Text("Занятия для тебя", textAlign: TextAlign.left),
-        SizedBox(height: 20),
+      children: [
+        Container(
+            width: double.infinity,
+            padding: EdgeInsets.symmetric(horizontal: 25),
+            child: Text(
+              "Занятия для вас",
+              style: TextStyle(
+                  fontSize: 23,
+                  color: grayButtomColor,
+                  fontWeight: FontWeight.w800),
+              textAlign: TextAlign.left,
+            )),
+        SizedBox(height: 10),
         classesScroll(),
       ],
     );
@@ -94,29 +127,40 @@ class _MainPageState extends State<MainPageState> {
               width: 25,
             ),
             oneClass(
-              image: Image.asset('assets/Images/Yoga.png'),
+              image: Image.asset('assets/Images/Yoga.jpg',
+                  width: 250, height: 250, fit: BoxFit.cover),
+              text: "Йога",
               page: YogaPageState(),
             ),
             SizedBox(
               width: 25,
             ),
             oneClass(
-              image: Image.asset('assets/Images/Meditation.png'),
+              image: Image.asset('assets/Images/Meditation.jpg',
+                  width: 250, height: 250, fit: BoxFit.cover),
+              text: "Медитации",
               page: MeditationPageState(),
             ),
             SizedBox(
               width: 25,
             ),
             oneClass(
-              image: Image.asset('assets/Images/Training.png'),
+              image: Image.asset('assets/Images/Training.jpg',
+                  width: 250, height: 250, fit: BoxFit.cover),
+              text: "Тренировки",
               page: TrainingPageState(),
             ),
             SizedBox(
               width: 25,
             ),
             oneClass(
-              image: Image.asset('assets/Images/Creation.png'),
+              image: Image.asset('assets/Images/Creation.jpg',
+                  width: 250, height: 250, fit: BoxFit.cover),
+              text: "Творчество",
               page: CreationPageState(),
+            ),
+            SizedBox(
+              width: 30,
             ),
           ],
         ),
@@ -127,43 +171,165 @@ class _MainPageState extends State<MainPageState> {
   Widget dailyOffer() {
     return Column(
       children: <Widget>[
-        Text('Предложения дня'),
-        SizedBox(height: 20),
+        Container(
+            width: double.infinity,
+            padding: EdgeInsets.symmetric(horizontal: 25),
+            child: Text("Предложение дня",
+                style: TextStyle(
+                    fontSize: 23,
+                    color: grayButtomColor,
+                    fontWeight: FontWeight.w800),
+                textAlign: TextAlign.left)),
+        SizedBox(height: 10),
         SizedBox(
-          width: 350,
-          height: 210,
-          child: Image.asset(
-            'assets/Images/DayOffer.png',
-            width: 350,
-            height: 210,
+          child: _DayOffer(
+            image:Image.asset(
+                'assets/Images/DayOffer2.jpg',
+                width: 380,
+                height: 210,
+                fit: BoxFit.cover),
+            text: "Начни день с йоги",
+            page: YogaPageState(),
           ),
         ),
       ],
     );
   }
 
-  Widget oneNews() {
-    return SizedBox(
-      width: 350,
-      height: 210,
-      child: Image.asset(
-        'assets/Images/News.png',
-        width: 350,
-        height: 210,
-      ),
-    );
-  }
-
   Widget news() {
     return Column(
       children: <Widget>[
-        Text('Новости'),
-        SizedBox(height: 20),
-        oneNews(),
+        Container(
+            width: double.infinity,
+            padding: EdgeInsets.symmetric(horizontal: 25),
+            child: Text("Интересное",
+                style: TextStyle(
+                    fontSize: 23,
+                    color: grayButtomColor,
+                    fontWeight: FontWeight.w800),
+                textAlign: TextAlign.left)),
         SizedBox(height: 10),
-        oneNews(),
+        oneNews(
+          image: Image.asset('assets/Images/News1.jpg',
+              width: 380, height: 210, fit: BoxFit.cover),
+          text: "Новость 1",
+          page: NewsPageState(),
+        ),
+        SizedBox(height: 20),
+        oneNews(
+          image: Image.asset('assets/Images/News3.jpg',
+              width: 380, height: 210, fit: BoxFit.cover),
+          text: "Новость 2",
+          page: NewsPageState(),
+        ),
+        SizedBox(height: 20),
+        oneNews(
+          image: Image.asset('assets/Images/News4.jpg',
+              width: 380, height: 210, fit: BoxFit.cover),
+          text: "Новость 3",
+          page: NewsPageState(),
+        ),
+        SizedBox(height: 20),
+        oneNews(
+          image: Image.asset('assets/Images/News5.jpg',
+              width: 380, height: 210, fit: BoxFit.cover),
+          text: "Новость 4",
+          page: NewsPageState(),
+        ),
         SizedBox(height: 40),
       ],
+    );
+  }
+}
+
+class _DayOffer extends StatelessWidget {
+  final Image image;
+  final String text;
+  final Widget page;
+
+  const _DayOffer({
+    super.key,
+    required this.page,
+    required this.image,
+    required this.text,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => navigateToPage(context, page),
+      child: Container(
+        width: 380,
+        height: 210,
+        child: Stack(
+          children: [
+            image,
+            Align(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Text(text,
+                    style: TextStyle(
+                        fontSize: 30,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400)),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class oneNews extends StatelessWidget {
+  final Image image;
+  final String text;
+  final Widget page;
+
+  const oneNews({
+    super.key,
+    required this.image,
+    required this.text,
+    required this.page,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => navigateToPage(context, page),
+      child: Center(
+        child: Container(
+          width: 380,
+          height: 210,
+          child: Stack(
+            children: [
+              Container(
+                child: image,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Text(text,
+                    style: TextStyle(
+                        fontSize: 30,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400)),
+              ),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text("Читать далее",
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w400)),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
