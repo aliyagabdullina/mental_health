@@ -1,6 +1,7 @@
 import 'package:Mental_Health/Pages/ProfilePage.dart';
 import 'package:flutter/material.dart';
 import 'package:Mental_Health/Pages/Panel.dart';
+import 'package:Mental_Health/Pages/YogaPage.dart';
 
 Color backgroundColor = Color(0xFFB6B6B6);
 Color whiteTextColor = Color(0xFFFFFFFF);
@@ -130,10 +131,13 @@ class _VideoPhotoWidget extends StatelessWidget {
           height: 370,
           child: image,
         ),
-        Positioned(
-          top: 20,
-          left: 20,
-          child: Image.asset('assets/Icons/ArrowRight.png'),
+        TextButton(
+          onPressed: () { Navigator.pop(context);},
+          child: Positioned(
+            top: 20,
+            left: 20,
+            child: Image.asset('assets/Icons/ArrowRight.png'),
+          ),
         ),
         Container(
           width: 370,

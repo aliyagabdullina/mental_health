@@ -3,6 +3,7 @@ import 'package:Mental_Health/Pages/Panel.dart';
 import 'package:Mental_Health/Pages/TimeScreenPage.dart';
 import 'package:Mental_Health/Pages/LevelScreenPage.dart';
 import 'package:Mental_Health/Pages/DirectionScreenPage.dart';
+import 'package:Mental_Health/Pages/VideoPage.dart';
 
 Color backgroundColor = Color(0xFFB6B6B6);
 Color whiteTextColor = Color(0xFFFFFFFF);
@@ -279,48 +280,56 @@ class oneVideos extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 380,
-      height: 210,
-      child: Stack(
-        children: [
-          Container(
-            child: image,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Text(text,
-                style: TextStyle(
-                    fontSize: 30,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w400)),
-          ),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: Padding(
+    return TextButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => VideoPageState()),
+        );
+      },
+      child: Container(
+        width: 380,
+        height: 210,
+        child: Stack(
+          children: [
+            Container(
+              child: image,
+            ),
+            Padding(
               padding: const EdgeInsets.all(10.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text(text1,
-                      style: TextStyle(
-                          fontSize: 15,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w400)),
-                  Text(text2,
-                      style: TextStyle(
-                          fontSize: 15,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w400)),
-                ],
+              child: Text(text,
+                  style: TextStyle(
+                      fontSize: 30,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400)),
+            ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(text1,
+                        style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w400)),
+                    Text(text2,
+                        style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w400)),
+                  ],
+                ),
               ),
             ),
-          ),
-          Align(
-            alignment: Alignment.center,
-            child: Image.asset('assets/Icons/Video.png'),
-          )
-        ],
+            Align(
+              alignment: Alignment.center,
+              child: Image.asset('assets/Icons/Video.png'),
+            )
+          ],
+        ),
       ),
     );
   }

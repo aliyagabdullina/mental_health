@@ -26,65 +26,75 @@ class _StatisticsPageState extends State<StatisticsPageState> {
   }
 
   Widget buildStatisticsPageContainer() {
-    return Container(
-      padding: EdgeInsets.all(16.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            'Statistics',
-            style: TextStyle(
-              fontSize: 24.0,
-              fontWeight: FontWeight.bold,
-              color: whiteTextColor,
-            ),
-          ),
-          SizedBox(height: 16.0),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+    return Stack(
+      children: [
+        Container(
+          padding: EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Column(
-                children: [
-                  Text(
-                    'Total Sessions',
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      color: whiteTextColor,
-                    ),
-                  ),
-                  Text(
-                    '10',
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold,
-                      color: whiteTextColor,
-                    ),
-                  ),
-                ],
+              Text(
+                'Statistics',
+                style: TextStyle(
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.bold,
+                  color: whiteTextColor,
+                ),
               ),
-              Column(
+              SizedBox(height: 16.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text(
-                    'Total Time',
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      color: whiteTextColor,
-                    ),
+                  Column(
+                    children: [
+                      Text(
+                        'Total Sessions',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          color: whiteTextColor,
+                        ),
+                      ),
+                      Text(
+                        '10',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                          color: whiteTextColor,
+                        ),
+                      ),
+                    ],
                   ),
-                  Text(
-                    '5 hours',
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold,
-                      color: whiteTextColor,
-                    ),
+                  Column(
+                    children: [
+                      Text(
+                        'Total Time',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          color: whiteTextColor,
+                        ),
+                      ),
+                      Text(
+                        '5 hours',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                          color: whiteTextColor,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
             ],
           ),
-        ],
-      ),
+        ),
+        Positioned(
+          bottom: 0,
+          width: 430,
+          height: 92,
+          child: BottomPanel(),
+        )
+      ],
     );
   }
 

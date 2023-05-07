@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:Mental_Health/Pages/Panel.dart';
 
 Color backgroundColor = Color(0xFFB6B6B6);
 Color whiteTextColor = Color(0xFFFFFFFF);
@@ -15,20 +16,38 @@ class _SettingsPageState extends State<SettingsPageState> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundColor,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          SizedBox(height: 90),
-          Notifications(),
-          SizedBox(height: 20),
-          _Friends(),
-          SizedBox(height: 20),
-          _UsingConditions(),
-          SizedBox(height: 20),
-          _PrivacyPolicy(),
-          SizedBox(height: 20),
-          _Support(),
-          _LotusVersion(),
+      body: Stack(
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(height: 70),
+              Row(
+                children: [
+                  SizedBox(width: 20),
+                  TextButton(onPressed: () { Navigator.pop(context);},
+                      child: Image.asset('assets/Icons/ArrowRight.png')),
+                ],
+              ),
+              SizedBox(height: 10),
+              Notifications(),
+              SizedBox(height: 20),
+              _Friends(),
+              SizedBox(height: 20),
+              _UsingConditions(),
+              SizedBox(height: 20),
+              _PrivacyPolicy(),
+              SizedBox(height: 20),
+              _Support(),
+              _LotusVersion(),
+            ],
+          ),
+          Positioned(
+            bottom: 0,
+            width: 430,
+            height: 92,
+            child: BottomPanel(),
+          )
         ],
       ),
     );

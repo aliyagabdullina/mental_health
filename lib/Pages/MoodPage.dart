@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:Mental_Health/Pages/Panel.dart';
 import 'package:flutter/rendering.dart';
+import 'package:Mental_Health/Pages/NoticePage.dart';
 
 Color backgroundColor = Color(0xFFB6B6B6);
 Color whiteTextColor = Color(0xFFFFFFFF);
@@ -151,10 +152,11 @@ class _SmileAndTextWidget extends StatelessWidget {
               elevation: 0,
               shadowColor: Colors.transparent,
             ),
-
-
             onPressed: () {
-              // Действие, которое будет выполняться при нажатии на кнопку
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => NoticePageState()),
+              );
             },
             child: icon,
           ),

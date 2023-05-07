@@ -1,6 +1,7 @@
 import 'package:Mental_Health/main.dart';
 import 'package:flutter/material.dart';
 import 'package:Mental_Health/Pages/Panel.dart';
+import 'package:Mental_Health/Pages/ProfilePage.dart';
 
 Color backgroundColor = Color(0xFFB6B6B6);
 Color greyButtomColor = Color(0xFFD9D9D9);
@@ -301,7 +302,12 @@ class _SaveButton extends StatelessWidget {
             side: BorderSide(color: Colors.white),
           )),
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ProfilePageState()),
+          );
+        },
         child: Text(
           "Сохранить",
           style: TextStyle(
