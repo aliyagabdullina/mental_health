@@ -133,9 +133,8 @@ class _VideoPhotoWidget extends StatelessWidget {
         ),
         TextButton(
           onPressed: () { Navigator.pop(context);},
-          child: Positioned(
-            top: 20,
-            left: 20,
+          child: Container(
+            padding: EdgeInsets.all(20),
             child: Image.asset('assets/Icons/ArrowRight.png'),
           ),
         ),
