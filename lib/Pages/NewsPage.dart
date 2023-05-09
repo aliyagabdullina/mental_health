@@ -28,29 +28,6 @@ class _NewsPageState extends State<NewsPageState> {
       width: double.infinity,
       child: Stack(
         children: [
-          ListView(
-            scrollDirection: Axis.vertical,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: 90,
-                  ),
-                  _NewsPhotoWidget(
-                    image:
-                    Image.asset('assets/Images/News1.jpg', fit: BoxFit.cover),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  _NewsNumberWidget(),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  _NewsTextWidget()
-                ],
-              ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
