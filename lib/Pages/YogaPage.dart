@@ -1,9 +1,15 @@
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:Mental_Health/Services/HttpGet.dart';
 import 'package:flutter/material.dart';
 import 'package:Mental_Health/Pages/Panel.dart';
 import 'package:Mental_Health/Pages/TimeScreenPage.dart';
 import 'package:Mental_Health/Pages/LevelScreenPage.dart';
 import 'package:Mental_Health/Pages/DirectionScreenPage.dart';
 import 'package:Mental_Health/Pages/VideoPage.dart';
+
+import '../Youtube/Video.dart';
 
 Color backgroundColor = Color(0xFFB6B6B6);
 Color whiteTextColor = Color(0xFFFFFFFF);
@@ -16,6 +22,7 @@ class YogaPageState extends StatefulWidget {
 }
 
 class _YogaPageState extends State<YogaPageState> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -207,130 +214,118 @@ class _YogaPageState extends State<YogaPageState> {
     });
   }
 
-
-  Widget yoga() {
-    return Column(
-      children: <Widget>[
-        oneVideos(
-          image: Image.asset('assets/Images/Yoga1.jpg',
-              width: 380, height: 210, fit: BoxFit.cover),
-          text: "Хатха йога",
-          text1: "Новичок ",
-          text2: "10 мин",
+  Widget yoga(){
+    final file = File('/Users/aliya/StudioProjects/mental_health_new/videos.json');
+    final jsonString = file.readAsStringSync();
+    final data = jsonDecode(jsonString).cast<Map<String, dynamic>>();
+    List<Video> videosList = videoListFromJson(data);
+    return Container(
+      child: videosList.isEmpty
+          ? Container()
+          : Container(
+        height: 640,
+        child: ListView.builder(
+          itemCount: videosList.length,
+          itemBuilder: (BuildContext context, int index) {
+            return oneVideos(
+              image: videosList[index].getImage(),
+              url: videosList[index].getUrl(),
+              workout_type: videosList[index].getWorkoutType(),
+              difficulty: videosList[index].getDifficulty(),
+              duration: videosList[index].getDuration().toString(),
+              description: videosList[index].getDescription(),
+            );
+          },
         ),
-        SizedBox(height: 20),
-        oneVideos(
-          image: Image.asset('assets/Images/Yoga7.jpg',
-              width: 380, height: 210, fit: BoxFit.cover),
-          text: "Оздоровительная йога",
-          text1: "Продолжающий ",
-          text2: "20 мин",
-        ),
-        SizedBox(height: 20),
-        oneVideos(
-          image: Image.asset('assets/Images/DayOffer2.jpg',
-              width: 380, height: 210, fit: BoxFit.cover),
-          text: "Йога нидра",
-          text1: "Средний ",
-          text2: "15 мин",
-        ),
-        SizedBox(height: 20),
-        oneVideos(
-          image: Image.asset('assets/Images/News1.jpg',
-              width: 380, height: 210, fit: BoxFit.cover),
-          text: "Фитнес йога",
-          text1: "Средний ",
-          text2: "25 мин",
-        ),
-        SizedBox(height: 20),
-        oneVideos(
-          image: Image.asset('assets/Images/Yoga3.jpg',
-              width: 380, height: 210, fit: BoxFit.cover),
-          text: "Стретчинг йога",
-          text1: "Продолжающий ",
-          text2: "40 мин",
-        ),
-        SizedBox(height: 20),
-        oneVideos(
-          image: Image.asset('assets/Images/Yoga10.jpg',
-              width: 380, height: 210, fit: BoxFit.cover),
-          text: "Шивананда йога",
-          text1: "Продолжающий ",
-          text2: "35 мин",
-        ),
-        SizedBox(height: 58),
-      ],
+      ),
     );
   }
+
 }
 
 class oneVideos extends StatelessWidget {
   final Image image;
-  final String text;
-  final String text1;
-  final String text2;
+  final String url;
+  final String workout_type;
+  final String difficulty;
+  final String duration;
+  final String description;
 
   const oneVideos({
     super.key,
     required this.image,
-    required this.text,
-    required this.text1,
-    required this.text2,
+    required this.url,
+    required this.workout_type,
+    required this.difficulty,
+    required this.duration,
+    required this.description,
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => VideoPageState()),
-        );
-      },
-      child: Container(
-        width: 380,
-        height: 210,
-        child: Stack(
-          children: [
-            Container(
-              child: image,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Text(text,
-                  style: TextStyle(
-                      fontSize: 30,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400)),
-            ),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(text1,
-                        style: TextStyle(
-                            fontSize: 15,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w400)),
-                    Text(text2,
-                        style: TextStyle(
-                            fontSize: 15,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w400)),
-                  ],
+    return Column(
+      children: [
+        TextButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => VideoPageState(
+                        videoUrl: url,
+                        workoutType: workout_type,
+                        duration: duration,
+                        difficulty: difficulty,
+                        description: description,
+                      )),
+            );
+          },
+          child: Container(
+            width: 380,
+            height: 210,
+            child: Stack(
+              children: [
+                Container(
+                  child: image,
                 ),
-              ),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text(workout_type,
+                      style: TextStyle(
+                          fontSize: 30,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w400)),
+                ),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(difficulty,
+                            style: TextStyle(
+                                fontSize: 15,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w400)),
+                        Text(duration,
+                            style: TextStyle(
+                                fontSize: 15,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w400)),
+                      ],
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Image.asset('assets/Icons/Video.png'),
+                )
+              ],
             ),
-            Align(
-              alignment: Alignment.center,
-              child: Image.asset('assets/Icons/Video.png'),
-            )
-          ],
+          ),
         ),
-      ),
+        SizedBox(height: 20),
+      ],
     );
   }
 }

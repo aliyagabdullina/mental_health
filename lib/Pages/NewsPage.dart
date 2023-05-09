@@ -27,23 +27,32 @@ class _NewsPageState extends State<NewsPageState> {
     return Container(
       width: double.infinity,
       child: Stack(
-        children: [Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 90,
-            ),
-            _NewsPhotoWidget(image: Image.asset('assets/Images/News1.jpg', fit: BoxFit.cover),),
-            SizedBox(
-              height: 10,
-            ),
-            _NewsNumberWidget(),
-            SizedBox(
-              height: 10,
-            ),
-            _NewsTextWidget()
-          ],
-        ),
+        children: [
+          ListView(
+            scrollDirection: Axis.vertical,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: 90,
+                  ),
+                  _NewsPhotoWidget(
+                    image:
+                    Image.asset('assets/Images/News1.jpg', fit: BoxFit.cover),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  _NewsNumberWidget(),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  _NewsTextWidget()
+                ],
+              ),
+            ],
+          ),
           Positioned(
             bottom: 0,
             width: 430,
@@ -94,26 +103,34 @@ class _NewsNumberWidget extends StatelessWidget {
 
 class _NewsPhotoWidget extends StatelessWidget {
   final Image image;
+
   const _NewsPhotoWidget({
-    super.key, required this.image,
+    super.key,
+    required this.image,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          width: 370,
-          height: 370,
-          child: image,
-        ),
-        Positioned(
-          top: 10,
-          left: 10,
-          child: TextButton(onPressed: () { Navigator.pop(context);},
-          child: Image.asset('assets/Icons/ArrowRight.png')),
-        ),
-      ],
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 25),
+      child: Stack(
+        children: [
+          Container(
+            width: 370,
+            height: 370,
+            child: image,
+          ),
+          Positioned(
+            top: 10,
+            left: 10,
+            child: TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Image.asset('assets/Icons/ArrowRight.png')),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -368,13 +368,13 @@ class _BlockWidget extends StatelessWidget {
           Row(
             children: [
               _IconAndTextWidget(
-                  icon: icons[indexIcon++], text: texts[indexText++]),
+                  icon: icons[(indexIcon++)%24], text: texts[(indexText++)%24]),
               _IconAndTextWidget(
-                  icon: icons[indexIcon++], text: texts[indexText++]),
+                  icon: icons[(indexIcon++)%24], text: texts[(indexText++)%24]),
               _IconAndTextWidget(
-                  icon: icons[indexIcon++], text: texts[indexText++]),
+                  icon: icons[(indexIcon++)%24], text: texts[(indexText++)%24]),
               _IconAndTextWidget(
-                  icon: icons[indexIcon++], text: texts[indexText++]),
+                  icon: icons[(indexIcon++)%24], text: texts[(indexText++)%24]),
             ],
           )
         ],
