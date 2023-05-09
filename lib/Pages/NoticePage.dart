@@ -373,13 +373,13 @@ class _BlockWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               _IconAndTextWidget(
-                  icon: icons[(indexIcon++)%24], text: texts[(indexText++)%24]),
+                  icon: icons[indexIcon++], text: texts[indexText++]),
               _IconAndTextWidget(
-                  icon: icons[(indexIcon++)%24], text: texts[(indexText++)%24]),
+                  icon: icons[indexIcon++], text: texts[indexText++]),
               _IconAndTextWidget(
-                  icon: icons[(indexIcon++)%24], text: texts[(indexText++)%24]),
+                  icon: icons[indexIcon++], text: texts[indexText++]),
               _IconAndTextWidget(
-                  icon: icons[(indexIcon++)%24], text: texts[(indexText++)%24]),
+                  icon: icons[indexIcon++], text: texts[indexText++]),
             ],
           )
         ],
