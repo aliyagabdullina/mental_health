@@ -1,3 +1,4 @@
+import 'package:Mental_Health/Statistics/CustomPaintWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:Mental_Health/Pages/MainPage.dart';
 import 'package:Mental_Health/Pages/SettingsPage.dart';

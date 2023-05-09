@@ -51,6 +51,24 @@ class _NewsPageState extends State<NewsPageState> {
                   _NewsTextWidget()
                 ],
               ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 90,
+              ),
+              _NewsPhotoWidget(
+                image:
+                    Image.asset('assets/Images/News1.jpg', fit: BoxFit.cover),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              _NewsNumberWidget(),
+              SizedBox(
+                height: 10,
+              ),
+              _NewsTextWidget()
             ],
           ),
           Positioned(

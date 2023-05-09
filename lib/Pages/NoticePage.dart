@@ -204,7 +204,7 @@ class _PhotoWidgetState extends State<_PhotoWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
+      height: 200,
       width: 390,
       decoration: BoxDecoration(
         color: backgroundColor,
@@ -229,15 +229,19 @@ class _PhotoWidgetState extends State<_PhotoWidget> {
                       : null,
                 ),
                 child: _imageFile == null
-                    ? Column(
-                    children: [SizedBox(height: 15,), Container(
-                        width: double.infinity,
-                        padding: EdgeInsets.symmetric(horizontal: 25),
-                        child: Text('Фото',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 25,
-                                fontWeight: FontWeight.bold))),])
+                    ? Column(children: [
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Container(
+                            width: double.infinity,
+                            padding: EdgeInsets.symmetric(horizontal: 25),
+                            child: Text('Фото',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold))),
+                      ])
                     : null,
               ),
             ),
@@ -366,6 +370,7 @@ class _BlockWidget extends StatelessWidget {
             height: 17,
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               _IconAndTextWidget(
                   icon: icons[(indexIcon++)%24], text: texts[(indexText++)%24]),
@@ -396,26 +401,44 @@ class _IconAndTextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Container(
-        child: Column(
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                // Действие, которое будет выполняться при нажатии на кнопку
-              },
-              child: icon,
-              style: ElevatedButton.styleFrom(
-                shape: CircleBorder(),
-                padding: EdgeInsets.all(20),
-                minimumSize: Size(80, 80),
-                primary: greyButtonColor,
+      child: Positioned(
+        top: 0,
+        child: Container(
+          width: 90,
+          child: Column(
+            children: [
+              Container(
+                height: 80,
+                width: 80,
+                child: Stack(
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        // Действие, которое будет выполняться при нажатии на кнопку
+                      },
+                      child: Text(""),
+                      style: ElevatedButton.styleFrom(
+                        shape: CircleBorder(),
+                        padding: EdgeInsets.all(20),
+                        minimumSize: Size(80, 80),
+                        primary: greyButtonColor,
+                      ),
+                    ),
+                    Align(alignment: Alignment.center, child: icon),
+                  ],
+                ),
               ),
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            Text(text, style: TextStyle(color: Colors.white, fontSize: 15)),
-          ],
+              SizedBox(
+                height: 5,
+              ),
+              Text(
+                text + '\n',
+                maxLines: 2,
+                style: TextStyle(color: Colors.white, fontSize: 15),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -169,75 +169,79 @@ class _MainPageState extends State<MainPageState> {
   }
 
   Widget dailyOffer() {
-    return Column(
-      children: <Widget>[
-        Container(
-            width: double.infinity,
-            padding: EdgeInsets.symmetric(horizontal: 25),
-            child: Text("Предложение дня",
-                style: TextStyle(
-                    fontSize: 23,
-                    color: grayButtomColor,
-                    fontWeight: FontWeight.w800),
-                textAlign: TextAlign.left)),
-        SizedBox(height: 10),
-        SizedBox(
-          child: _DayOffer(
-            image:Image.asset(
-                'assets/Images/DayOffer2.jpg',
-                width: 380,
-                height: 210,
-                fit: BoxFit.cover),
-            text: "Начни день с йоги",
-            page: YogaPageState(),
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 25),
+      child: Column(
+        children: <Widget>[
+          Container(
+              width: double.infinity,
+              child: Text("Предложение дня",
+                  style: TextStyle(
+                      fontSize: 23,
+                      color: grayButtomColor,
+                      fontWeight: FontWeight.w800),
+                  textAlign: TextAlign.left)),
+          SizedBox(height: 10),
+          SizedBox(
+            child: _DayOffer(
+              image:Image.asset(
+                  'assets/Images/DayOffer2.jpg',
+                  width: 380,
+                  height: 210,
+                  fit: BoxFit.cover),
+              text: "Начни день с йоги",
+              page: YogaPageState(),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
   Widget news() {
-    return Column(
-      children: <Widget>[
-        Container(
-            width: double.infinity,
-            padding: EdgeInsets.symmetric(horizontal: 25),
-            child: Text("Интересное",
-                style: TextStyle(
-                    fontSize: 23,
-                    color: grayButtomColor,
-                    fontWeight: FontWeight.w800),
-                textAlign: TextAlign.left)),
-        SizedBox(height: 10),
-        oneNews(
-          image: Image.asset('assets/Images/News1.jpg',
-              width: 380, height: 210, fit: BoxFit.cover),
-          text: "Новость 1",
-          page: NewsPageState(),
-        ),
-        SizedBox(height: 20),
-        oneNews(
-          image: Image.asset('assets/Images/News3.jpg',
-              width: 380, height: 210, fit: BoxFit.cover),
-          text: "Новость 2",
-          page: NewsPageState(),
-        ),
-        SizedBox(height: 20),
-        oneNews(
-          image: Image.asset('assets/Images/News4.jpg',
-              width: 380, height: 210, fit: BoxFit.cover),
-          text: "Новость 3",
-          page: NewsPageState(),
-        ),
-        SizedBox(height: 20),
-        oneNews(
-          image: Image.asset('assets/Images/News5.jpg',
-              width: 380, height: 210, fit: BoxFit.cover),
-          text: "Новость 4",
-          page: NewsPageState(),
-        ),
-        SizedBox(height: 40),
-      ],
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 25),
+      child: Column(
+        children: <Widget>[
+          Container(
+              width: double.infinity,
+              child: Text("Интересное",
+                  style: TextStyle(
+                      fontSize: 23,
+                      color: grayButtomColor,
+                      fontWeight: FontWeight.w800),
+                  textAlign: TextAlign.left)),
+          SizedBox(height: 10),
+          oneNews(
+            image: Image.asset('assets/Images/News1.jpg',
+                width: 380, height: 210, fit: BoxFit.cover),
+            text: "Новость 1",
+            page: NewsPageState(),
+          ),
+          SizedBox(height: 20),
+          oneNews(
+            image: Image.asset('assets/Images/News3.jpg',
+                width: 380, height: 210, fit: BoxFit.cover),
+            text: "Новость 2",
+            page: NewsPageState(),
+          ),
+          SizedBox(height: 20),
+          oneNews(
+            image: Image.asset('assets/Images/News4.jpg',
+                width: 380, height: 210, fit: BoxFit.cover),
+            text: "Новость 3",
+            page: NewsPageState(),
+          ),
+          SizedBox(height: 20),
+          oneNews(
+            image: Image.asset('assets/Images/News5.jpg',
+                width: 380, height: 210, fit: BoxFit.cover),
+            text: "Новость 4",
+            page: NewsPageState(),
+          ),
+          SizedBox(height: 40),
+        ],
+      ),
     );
   }
 }

@@ -217,7 +217,7 @@ class _ProfilePageState extends State<ProfilePageState> {
           itemCount: _rectangles.length,
           itemBuilder: (BuildContext context, int index) {
             return Container(
-              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               height: 220,
               decoration: BoxDecoration(
                 color: Colors.black38,
@@ -322,7 +322,7 @@ class _ProfilePageState extends State<ProfilePageState> {
 
   Widget statisticButton(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(15.0),
       child: Container(
         height: 63,
         width: double.infinity,
