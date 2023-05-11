@@ -3,33 +3,37 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomPaintWidget extends StatefulWidget {
-  CustomPaintWidget({Key? key}) : super(key: key);
+  final double percentage;
+  const CustomPaintWidget({
+    Key? key,
+    required this.percentage,
+  }) : super(key: key);
 
   @override
   _CustomPaintWidget createState() => _CustomPaintWidget();
 }
 
 class _CustomPaintWidget extends State<CustomPaintWidget> {
+
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
+    return Center(
         child: Container(
           width: 100,
           height: 100,
           child: RadialPercentWidget(
-            percent: 0.33,
+            percent: widget.percentage,
             fillColor: Colors.black,
             lineColor: Colors.tealAccent,
             freeColor: Colors.teal,
             lineWidth: 5,
             child: Text(
-              '33%',
+                (widget.percentage*100).toString() + '%',
               style: TextStyle(color: Colors.white, fontSize: 25),
             ),
           ),
         ),
-      ),
     );
   }
 }

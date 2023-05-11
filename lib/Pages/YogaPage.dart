@@ -273,8 +273,8 @@ class oneVideos extends StatelessWidget {
                   builder: (context) => VideoPageState(
                         videoUrl: url,
                         workoutType: workout_type,
-                        duration: duration,
-                        difficulty: difficulty,
+                        duration: duration + ' минут',
+                        difficulty: translate(difficulty),
                         description: description,
                       )),
             );
@@ -302,12 +302,12 @@ class oneVideos extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Text(difficulty,
+                        Text(translate(difficulty) + ' ',
                             style: TextStyle(
                                 fontSize: 15,
                                 color: Colors.white,
                                 fontWeight: FontWeight.w400)),
-                        Text(duration,
+                        Text(duration + ' минут',
                             style: TextStyle(
                                 fontSize: 15,
                                 color: Colors.white,
@@ -327,5 +327,17 @@ class oneVideos extends StatelessWidget {
         SizedBox(height: 20),
       ],
     );
+  }
+
+  translate(String difficulty) {
+    if(difficulty == "beginner"){
+      return 'Новичок';
+    }
+    if(difficulty == "medium"){
+      return 'Средний';
+    }
+    if(difficulty == "advanced"){
+      return 'Продвинутый';
+    }
   }
 }

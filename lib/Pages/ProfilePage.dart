@@ -1,11 +1,18 @@
+import 'package:Mental_Health/Pages/MoodPage.dart';
+import 'package:Mental_Health/Pages/NoticePage.dart';
 import 'package:Mental_Health/Pages/SettingsPage.dart';
+import 'package:Mental_Health/Services/HttpPost.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'dart:async';
+import 'dart:typed_data';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:Mental_Health/Pages/Panel.dart';
 import 'package:Mental_Health/Pages/StatisticsPage.dart';
+import 'package:image_compare/image_compare.dart';
+
+import '../Models/TimeConverter.dart';
 
 Color backgroundColor = Color(0xFFB6B6B6);
 Color whiteTextColor = Color(0xFFFFFFFF);
@@ -20,20 +27,115 @@ class ProfilePageState extends StatefulWidget {
   _ProfilePageState createState() => _ProfilePageState();
 }
 
+List<Widget> notices = [];
+Image emojiToString(String selectedEmoji) {
+  if (selectedEmoji =='супер') {
+    return Image.asset('assets/Icons/SmileGreat.png');
+  }
+  if (selectedEmoji == 'хорошо') {
+    return Image.asset('assets/Icons/SmileGood.png');
+  }
+  if (selectedEmoji =='так себе' ) {
+    return Image.asset('assets/Icons/SmileSoSo.png');
+  }
+  if (selectedEmoji == 'плохо') {
+    return Image.asset('assets/Icons/SmileBad.png');
+  }
+  if (selectedEmoji == 'ужасно') {
+    return Image.asset('assets/Icons/SmileAwful.png');
+  }
+  return Image.asset('assets/Icons/SmileAwful.png');
+}
+Widget rectangle() {
+  return Column(
+    children: [
+      Row(
+        children: [
+          Container(width: 40, height: 40, child: emojiToString(selectedEmoji)),
+          SizedBox(
+            width: 10,
+          ),
+          Text(formatter.format(selectedDate!),
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+              )),
+        ],
+      ),
+      SizedBox(
+        height: 5,
+      ),
+      Expanded(
+        child: SingleChildScrollView(
+          child: ListView.builder(
+            physics: NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: selectedTexts.length,
+            itemBuilder: (BuildContext context, int index) {
+              return notionActions(
+                image: selectedIcons[index],
+                text: selectedTexts[index],
+              );
+            },
+          ),
+        ),
+      ),
+      Row(
+        textDirection: TextDirection.rtl,
+        children: [
+          Text("Читать далее",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 15,
+              ))
+        ],
+      ),
+    ],
+  );
+}
+
+class notionActions extends StatelessWidget {
+  final Image image;
+  final String text;
+
+  const notionActions({
+    required this.image,
+    required this.text,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          children: [
+            Container(width: 40, height: 40, child: image),
+            SizedBox(
+              width: 10,
+            ),
+            Text(text,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                )),
+          ],
+        ),
+        SizedBox(
+          height: 5,
+        ),
+      ],
+    );
+  }
+}
+
 class _ProfilePageState extends State<ProfilePageState> {
   final _nameController = TextEditingController();
-  List<String> _rectangles = [
-    'Rectangle 1',
-    'Rectangle 2',
-    'Rectangle 3',
-    'Rectangle 4',
-    'Rectangle 5',
-    'Rectangle 6',
-    'Rectangle 7',
-    'Rectangle 8',
-    'Rectangle 9',
-    'Rectangle 10'
+
+  List<Widget> _rectangles = [
+    notionActions(image: Image.asset('assets/Icons/Arrow'), text: "Text"),
   ];
+
   File? _image = null;
 
   Widget avatarImage() {
@@ -203,6 +305,7 @@ class _ProfilePageState extends State<ProfilePageState> {
   }
 
   Widget buildRectangles() {
+    notices.add(rectangle());
     return TextButton(
       onPressed: () {
         Navigator.push(
@@ -214,7 +317,7 @@ class _ProfilePageState extends State<ProfilePageState> {
         height: 600,
         child: ListView.builder(
           scrollDirection: Axis.vertical,
-          itemCount: _rectangles.length,
+          itemCount: notices.length,
           itemBuilder: (BuildContext context, int index) {
             return Container(
               margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -225,93 +328,7 @@ class _ProfilePageState extends State<ProfilePageState> {
               ),
               child: Padding(
                 padding: const EdgeInsets.all(15.0),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text("29.01.2023",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 23,
-                                fontWeight: FontWeight.bold,
-                              )),
-                        ),
-                        Container(
-                            width: 40,
-                            height: 40,
-                            child: Image.asset('assets/Icons/SmileGreat.png')),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Container(
-                            width: 40,
-                            height: 40,
-                            child: Image.asset(
-                                'assets/Icons/NotionIcons/DoingSport.png')),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text("Занятие спортом",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                            ))
-                      ],
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Row(
-                      children: [
-                        Container(
-                            width: 40,
-                            height: 40,
-                            child: Image.asset(
-                                'assets/Icons/NotionIcons/Meditation.png')),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text("Медитации",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                            ))
-                      ],
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Row(
-                      children: [
-                        Container(
-                            width: 40,
-                            height: 40,
-                            child: Image.asset(
-                                'assets/Icons/NotionIcons/HeartConversation.png')),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text("Разговоры по душам",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                            ))
-                      ],
-                    ),
-                    Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Text("Читать далее",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 15,
-                            ))
-                      ],
-                    ),
-                  ],
-                ),
+                child: notices[notices.length - 1 - index],
               ),
             );
           },
@@ -407,6 +424,12 @@ class _ProfilePageState extends State<ProfilePageState> {
 
   @override
   Widget build(BuildContext context) {
+    sendDataToServer(
+        selectedEmoji,
+        formatter.format(selectedDate!),
+        selectedNotion,
+        selectedTexts);
+
     return Scaffold(
       backgroundColor: backgroundColor,
       body: Center(

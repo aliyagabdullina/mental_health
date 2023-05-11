@@ -3,9 +3,13 @@ import 'package:Mental_Health/Pages/Panel.dart';
 import 'package:flutter/rendering.dart';
 import 'package:Mental_Health/Pages/NoticePage.dart';
 
+
 Color backgroundColor = Color(0xFFB6B6B6);
 Color whiteTextColor = Color(0xFFFFFFFF);
 Color grayButtomColor = Color(0xFFD9D9D9);
+
+DateTime? selectedDate;
+String selectedEmoji = "отлично";
 
 class MoodPageState extends StatefulWidget {
   MoodPageState({Key? key}) : super(key: key);
@@ -15,7 +19,7 @@ class MoodPageState extends StatefulWidget {
 }
 
 class _MoodPageState extends State<MoodPageState> {
-  DateTime? selectedDate;
+  DateTime? selectedDate = DateTime.now();
 
   @override
   void initState() {
@@ -105,6 +109,9 @@ class _DataSelectionWidget extends StatelessWidget {
 
               if (picked != null && picked != initialDate) {
                 onDateSelected(picked);
+                selectedDate = initialDate;
+              } else{
+                selectedDate = DateTime.now();
               }
             },
             child: Container(
@@ -118,7 +125,7 @@ class _DataSelectionWidget extends StatelessWidget {
                   Icon(Icons.calendar_today),
                   SizedBox(width: 5),
                   Text(
-                    "Сегодня, ${initialDate?.day}.${initialDate?.month.toString().padLeft(2, '0') }, ${initialDate?.hour}:${initialDate?.minute}",
+                    "Сегодня, ${initialDate?.day}.${initialDate?.month.toString().padLeft(2, '0') }",
                     style: TextStyle(fontSize: 25),
                     textAlign: TextAlign.center,
                   ),
@@ -157,6 +164,7 @@ class _SmileAndTextWidget extends StatelessWidget {
                 context,
                 MaterialPageRoute(builder: (context) => NoticePageState()),
               );
+              selectedEmoji = text;
             },
             child: icon,
           ),

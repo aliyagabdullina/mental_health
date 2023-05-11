@@ -24,6 +24,7 @@ dependencies:
   postgres: ^2.0.0
   http: ^0.13.3
   path_provider: ^2.0.2
+  image_compare: ^1.1.2
 
 
 dev_dependencies:

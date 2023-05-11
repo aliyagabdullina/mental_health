@@ -64,6 +64,12 @@ List<String> texts = [
   "Ведение дневника",
 ];
 
+List<Image> selectedIcons = [];
+List<String> selectedTexts = [];
+Image selectedPhoto = Image.asset(('assets/Icons/Arrow'));
+String selectedNotion= "";
+
+
 class NoticePageState extends StatefulWidget {
   NoticePageState({Key? key}) : super(key: key);
 
@@ -189,7 +195,6 @@ class _PhotoWidget extends StatefulWidget {
   @override
   _PhotoWidgetState createState() => _PhotoWidgetState();
 }
-
 class _PhotoWidgetState extends State<_PhotoWidget> {
   File? _imageFile = null;
 
@@ -198,6 +203,7 @@ class _PhotoWidgetState extends State<_PhotoWidget> {
         await ImagePicker().getImage(source: ImageSource.gallery);
     setState(() {
       _imageFile = pickedFile != null ? File(pickedFile.path) : null;
+      selectedPhoto = _imageFile as Image;
     });
   }
 
@@ -253,13 +259,15 @@ class _PhotoWidgetState extends State<_PhotoWidget> {
 }
 
 class _TextNotion extends StatelessWidget {
-  const _TextNotion({
+  final TextEditingController _controller = TextEditingController();
+   _TextNotion({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: _controller,
       maxLines: 10,
       minLines: 1,
       style: TextStyle(
@@ -295,6 +303,9 @@ class _TextNotion extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
         ),
       ),
+      onTap: () {
+        selectedNotion = _controller.text;
+      },
     );
   }
 }
@@ -415,6 +426,16 @@ class _IconAndTextWidget extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () {
                         // Действие, которое будет выполняться при нажатии на кнопку
+                        if(selectedIcons.contains(icon)){
+                          selectedIcons.remove(icon);
+                        } else{
+                          selectedIcons.add(icon);
+                        }
+                        if(selectedTexts.contains(text)){
+                          selectedTexts.remove(text);
+                        } else{
+                          selectedTexts.add(text);
+                        }
                       },
                       child: Text(""),
                       style: ElevatedButton.styleFrom(

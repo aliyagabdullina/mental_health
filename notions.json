@@ -1,0 +1,32 @@
+[
+  {
+    "percentage": 50.0,
+    "name": "Йога",
+    "count": 5
+  },
+  {
+    "percentage": 20.0,
+    "name": "Медитация",
+    "count": 2
+  },
+  {
+    "percentage": 10.0,
+    "name": "Благодарность",
+    "count": 1
+  },
+  {
+    "percentage": 0.0,
+    "name": "Здоровый сон",
+    "count": 0
+  },
+  {
+    "percentage": 60.0,
+    "name": "Хобби",
+    "count": 6
+  },
+  {
+    "percentage": 70.0,
+    "name": "Уход",
+    "count": 7
+  }
+]
