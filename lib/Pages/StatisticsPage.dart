@@ -1,8 +1,11 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 import '../Statistics/CustomPaintWidget.dart';
 import 'Panel.dart';
+import 'ProfilePage.dart';
 
 Color backgroundColor = Color(0xFFB6B6B6);
 Color whiteTextColor = Color(0xFFFFFFFF);
@@ -15,28 +18,54 @@ class StatisticsPageState extends StatefulWidget {
 }
 
 class _StatisticsPageState extends State<StatisticsPageState> {
-  late List<Map<String, dynamic>> _dataList;
+  List<Map<String, dynamic>> _dataList = [];
 
   @override
-  void initState() {
+  void initState(){
     super.initState();
+    _getStatisticsFromServer();
     // Здесь мы парсим JSON строку и получаем List<Map<String, dynamic>>
-    String jsonString =
-        '[{"percentage":50.0,"name":"Йога","count":5},{"percentage":20.0,"name":"Медитация","count":2},{"percentage":10.0,"name":"Благодарность","count":1},{"percentage":0.0,"name":"Здоровый сон","count":0},{"percentage":60.0,"name":"Хобби","count":6},{"percentage":70.0,"name":"Уход","count":7}]';
-    _dataList = List<Map<String, dynamic>>.from(json.decode(jsonString));
+  }
+  void _getStatisticsFromServer() async {
+    var url = Uri.parse('http://localhost:8080/statistics');
+    var response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      setState(() {
+        _dataList = List<Map<String, dynamic>>.from(json.decode(response.body));
+      });
+    } else {
+      throw Exception('Failed to load data');
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundColor,
-      body: Center(
-        child: buildStatisticsPageContainer(),
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: Center(
+              child: buildStatisticsPageContainer(),
+            ),
+          ),
+          Positioned(
+            top: 35,
+            left: 10,
+            child: TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Image.asset('assets/Icons/ArrowRight.png'))
+          ),
+        ],
       ),
     );
   }
 
   Widget buildStatisticsPageContainer() {
+
     return Stack(
       children: [
         Container(
@@ -81,7 +110,7 @@ class _StatisticsPageState extends State<StatisticsPageState> {
         ),
         Positioned(
           bottom: 0,
-          width: 430,
+          width: 390,
           height: 92,
           child: BottomPanel(),
         )
@@ -141,6 +170,6 @@ class _StatisticsPageState extends State<StatisticsPageState> {
   }
 
   int _getTotalCount() {
-    return 10;
+    return notices.length;
   }
 }

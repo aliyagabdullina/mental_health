@@ -4,6 +4,7 @@ Color backgroundColorClear = Color.fromRGBO(182, 182, 182, 0);
 Color backgroundColor = Color(0xFFB6B6B6);
 Color whiteTextColor = Color(0xFFFFFFFF);
 
+String sortedLevel = "любой уровень";
 class LevelScreenPageState extends StatefulWidget {
   LevelScreenPageState({Key? key}) : super(key: key);
 
@@ -23,7 +24,7 @@ class _LevelScreenPageState extends State<LevelScreenPageState> {
   }
 
   Widget buildLevelScreenPageContainer() {
-    List<String> times = ["Начальный", "Средний", "Продвинутый"];
+    List<String> times = ["Начальный", "Средний", "Продвинутый", "любой уровень"];
     return Align(
       alignment: Alignment.topLeft,
       child: Container(
@@ -31,7 +32,7 @@ class _LevelScreenPageState extends State<LevelScreenPageState> {
           children: [
             Container(
               width: double.infinity,
-              height: 160,
+              height: 210,
               color: backgroundColor,
             ),
             Center(
@@ -60,7 +61,9 @@ class _LevelScreenPageState extends State<LevelScreenPageState> {
         ],
       ),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          sortedLevel = text;
+        },
         style: ElevatedButton.styleFrom(
           minimumSize: Size(342, 24),
           padding: EdgeInsets.symmetric(horizontal: 16.0),

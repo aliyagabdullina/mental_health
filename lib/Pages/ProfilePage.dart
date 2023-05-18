@@ -13,6 +13,7 @@ import 'package:Mental_Health/Pages/StatisticsPage.dart';
 import 'package:image_compare/image_compare.dart';
 
 import '../Models/TimeConverter.dart';
+import '../Statistics/Notion.dart';
 
 Color backgroundColor = Color(0xFFB6B6B6);
 Color whiteTextColor = Color(0xFFFFFFFF);
@@ -27,15 +28,16 @@ class ProfilePageState extends StatefulWidget {
   _ProfilePageState createState() => _ProfilePageState();
 }
 
-List<Widget> notices = [];
+List<Notion> notices = [];
+
 Image emojiToString(String selectedEmoji) {
-  if (selectedEmoji =='супер') {
+  if (selectedEmoji == 'супер') {
     return Image.asset('assets/Icons/SmileGreat.png');
   }
   if (selectedEmoji == 'хорошо') {
     return Image.asset('assets/Icons/SmileGood.png');
   }
-  if (selectedEmoji =='так себе' ) {
+  if (selectedEmoji == 'так себе') {
     return Image.asset('assets/Icons/SmileSoSo.png');
   }
   if (selectedEmoji == 'плохо') {
@@ -46,16 +48,17 @@ Image emojiToString(String selectedEmoji) {
   }
   return Image.asset('assets/Icons/SmileAwful.png');
 }
-Widget rectangle() {
+
+Widget rectangle(int ind) {
   return Column(
     children: [
       Row(
         children: [
-          Container(width: 40, height: 40, child: emojiToString(selectedEmoji)),
+          Container(width: 40, height: 40, child: emojiToString(notices[ind].getEmoji())),
           SizedBox(
             width: 10,
           ),
-          Text(formatter.format(selectedDate!),
+          Text(notices[ind].getDate(),
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 20,
@@ -70,11 +73,11 @@ Widget rectangle() {
           child: ListView.builder(
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            itemCount: selectedTexts.length,
+            itemCount: notices[ind].getActivityTextsList().length,
             itemBuilder: (BuildContext context, int index) {
               return notionActions(
-                image: selectedIcons[index],
-                text: selectedTexts[index],
+                image: notices[ind].getActivityIconList()[index],
+                text: notices[ind].getActivityTextsList()[index],
               );
             },
           ),
@@ -305,7 +308,6 @@ class _ProfilePageState extends State<ProfilePageState> {
   }
 
   Widget buildRectangles() {
-    notices.add(rectangle());
     return TextButton(
       onPressed: () {
         Navigator.push(
@@ -328,7 +330,7 @@ class _ProfilePageState extends State<ProfilePageState> {
               ),
               child: Padding(
                 padding: const EdgeInsets.all(15.0),
-                child: notices[notices.length - 1 - index],
+                child: rectangle(notices.length-1-index),
               ),
             );
           },
@@ -405,7 +407,7 @@ class _ProfilePageState extends State<ProfilePageState> {
                   textFieldName(),
                   SizedBox(height: 20),
                   statisticButton(context),
-                  //Text("Записи", style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),),
+//Text("Записи", style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),),
                   buildRectangles(),
                 ],
               ),
@@ -414,7 +416,7 @@ class _ProfilePageState extends State<ProfilePageState> {
         ),
         Positioned(
           bottom: 0,
-          width: 430,
+          width: 390,
           height: 92,
           child: BottomPanel(),
         )
@@ -424,12 +426,6 @@ class _ProfilePageState extends State<ProfilePageState> {
 
   @override
   Widget build(BuildContext context) {
-    sendDataToServer(
-        selectedEmoji,
-        formatter.format(selectedDate!),
-        selectedNotion,
-        selectedTexts);
-
     return Scaffold(
       backgroundColor: backgroundColor,
       body: Center(

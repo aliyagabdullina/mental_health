@@ -111,6 +111,61 @@ class Video {
             "Шивананда йога – это путь к ментальному и физическому благополучию. Является более монашеским направлением с очень строгими традициями. Считается, что Шивананда йога имеет мощный терапевтический эффект и даже была основателем йога-терапии. Регулярные занятия помогут практикующим укрепить и сделать более гибким позвоночник, улучшить работу кровеносной, дыхательной, эндокринной систем организма, продлить молодость и сохранить здоровье.",
       );
     }
+    if (json['workout_type'] == "Morning meditations") {
+      return Video(
+        image: images[(index) % images.length],
+        url: json['url'],
+        duration: json['duration'],
+        workout_type: "Утренняя медитация",
+        difficulty: json['difficulty'],
+        description:
+        "Утренняя медитация помогает начать день с ясным умом, создает позитивный настрой на предстоящий день, способствует ясности и сосредоточенности ума, снижает стресс и беспокойство, повышает чувство благополучия, повышает творческий потенциал, улучшает качество сна.",
+      );
+    }
+    if (json['workout_type'] == "Night meditations") {
+      return Video(
+        image: images[(index) % images.length],
+        url: json['url'],
+        duration: json['duration'],
+        workout_type: "Вечерняя медитация",
+        difficulty: json['difficulty'],
+        description:
+        "Физически и эмоционально истощённые за день, мы нередко проваливаемся в сон ещё до того, как голова коснётся подушки. Или, наоборот, полночи ворочаемся, мучаясь от бессонницы — частой спутницы эмоциональных перегрузок. Ещё один знакомый многим сюжет — уснуть перед телевизором или со смартфоном в руках. Улучшить качество сна поможет вечерняя медитация. Она стимулирует выработку мелатонина в крови — гормона, обеспечивающего спокойный ночной отдых. Всего 15 минут практики помогут унять беспокойство, справиться с эмоциональным напряжением и настроиться на приятные сновидения.",
+      );
+    }
+    if (json['workout_type'] == "Relax") {
+      return Video(
+        image: images[(index) % images.length],
+        url: json['url'],
+        duration: json['duration'],
+        workout_type: "Расслабление",
+        difficulty: json['difficulty'],
+        description:
+        "Расслабляющая медитация поможет прийти в себя после тяжелого рабочего дня, при перенапряжении и поможет восстановить внутренний баланс.",
+      );
+    }
+    if (json['workout_type'] == "Affirmation") {
+      return Video(
+        image: images[(index) % images.length],
+        url: json['url'],
+        duration: json['duration'],
+        workout_type: "Аффирмации",
+        difficulty: json['difficulty'],
+        description:
+        "В популярной психологии аффирмация — это позитивное утверждение, краткая фраза самовнушения, создающая правильный психологический настрой.",
+      );
+    }
+    if (json['workout_type'] == "Advanced meditations") {
+      return Video(
+        image: images[(index) % images.length],
+        url: json['url'],
+        duration: json['duration'],
+        workout_type: "Медитации для продвинутых",
+        difficulty: json['difficulty'],
+        description:
+        "Медитации для тех, кто познал себя и эту жизнь.",
+      );
+    }
     return Video(
       image: images[(index) % images.length],
       url: json['url'],

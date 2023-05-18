@@ -35,12 +35,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-/*
- VideoPageState(
-        videoUrl: "https://youtube.com/watch?v=i_MJYN_9bT8",
-        workoutType: "Йога бля",
-        duration: "100 часов",
-        difficulty: "Пиздец сложно",
-        description: "Кто не будет заниматься йогой - тот говно",
-      ),
- */

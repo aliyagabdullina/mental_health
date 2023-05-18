@@ -8,7 +8,7 @@ Color backgroundColor = Color(0xFFB6B6B6);
 Color whiteTextColor = Color(0xFFFFFFFF);
 Color grayButtomColor = Color(0xFFD9D9D9);
 
-DateTime? selectedDate;
+DateTime? selectedDate = DateTime.now();
 String selectedEmoji = "отлично";
 
 class MoodPageState extends StatefulWidget {
@@ -70,7 +70,7 @@ class _MoodPageState extends State<MoodPageState> {
           ),
           Positioned(
             bottom: 0,
-            width: 430,
+            width: 390,
             height: 92,
             child: BottomPanel(),
           ),

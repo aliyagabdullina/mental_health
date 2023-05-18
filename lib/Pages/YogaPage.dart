@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:http/http.dart' as http;
 
 import 'package:Mental_Health/Services/HttpGet.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,6 @@ class YogaPageState extends StatefulWidget {
 }
 
 class _YogaPageState extends State<YogaPageState> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +64,7 @@ class _YogaPageState extends State<YogaPageState> {
               top: 135,
               left: 0,
               right: 0,
-              bottom: 510,
+              bottom: 460,
               child: TimeScreenPageState(),
             ),
           if (_showOverlayLevel)
@@ -85,7 +85,7 @@ class _YogaPageState extends State<YogaPageState> {
               top: 135,
               left: 0,
               right: 0,
-              bottom: 560,
+              bottom: 510,
               child: LevelScreenPageState(),
             ),
           if (_showOverlayDirection)
@@ -106,12 +106,12 @@ class _YogaPageState extends State<YogaPageState> {
               top: 135,
               left: 0,
               right: 0,
-              bottom: 390,
+              bottom: 340,
               child: DirectionScreenPageState(),
             ),
           Positioned(
             bottom: 0,
-            width: 430,
+            width: 390,
             height: 92,
             child: BottomPanel(),
           ),
@@ -214,33 +214,84 @@ class _YogaPageState extends State<YogaPageState> {
     });
   }
 
-  Widget yoga(){
-    final file = File('/Users/aliya/StudioProjects/mental_health_new/videos.json');
-    final jsonString = file.readAsStringSync();
-    final data = jsonDecode(jsonString).cast<Map<String, dynamic>>();
-    List<Video> videosList = videoListFromJson(data);
+  Widget yoga() {
+    List<Video> videosList = getVideoList();
+
     return Container(
       child: videosList.isEmpty
           ? Container()
           : Container(
-        height: 640,
-        child: ListView.builder(
-          itemCount: videosList.length,
-          itemBuilder: (BuildContext context, int index) {
-            return oneVideos(
-              image: videosList[index].getImage(),
-              url: videosList[index].getUrl(),
-              workout_type: videosList[index].getWorkoutType(),
-              difficulty: videosList[index].getDifficulty(),
-              duration: videosList[index].getDuration().toString(),
-              description: videosList[index].getDescription(),
-            );
-          },
-        ),
-      ),
+              height: 640,
+              child: ListView.builder(
+                itemCount: videosList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return oneVideos(
+                    image: videosList[index].getImage(),
+                    url: videosList[index].getUrl(),
+                    workout_type: videosList[index].getWorkoutType(),
+                    difficulty: videosList[index].getDifficulty(),
+                    duration: videosList[index].getDuration().toString(),
+                    description: videosList[index].getDescription(),
+                  );
+                },
+              ),
+            ),
     );
   }
 
+  List<Video> getVideoList() {
+    final file =
+        File('/Users/aliya/StudioProjects/mental_health_new/videos.json');
+    final jsonString = file.readAsStringSync();
+    final data = jsonDecode(jsonString).cast<Map<String, dynamic>>();
+    List<Video> videosList = videoListFromJson(data);
+    if(sortedTime == "5-10 мин"){
+      videosList.removeWhere((video) {
+        return video.duration < 5 || video.duration > 10;
+      });
+    }
+    if(sortedTime == "10-20 мин"){
+      videosList.removeWhere((video) {
+        return video.duration < 10 || video.duration > 20;
+      });
+    }
+    if(sortedTime == "20-40 мин"){
+      videosList.removeWhere((video) {
+        return video.duration < 20 || video.duration > 40;
+      });
+    }
+    if(sortedTime == "40+ мин"){
+      videosList.removeWhere((video) {
+        return video.duration < 40;
+      });
+    }
+
+    if(sortedLevel == "Начальный"){
+      videosList.removeWhere((video) {
+        return video.difficulty != "beginner";
+      });
+    }
+
+    if(sortedLevel == "Средний"){
+      videosList.removeWhere((video) {
+        return video.difficulty != "medium";
+      });
+    }
+
+    if(sortedLevel == "Продвинутый"){
+      videosList.removeWhere((video) {
+        return video.difficulty != "advanced";
+      });
+    }
+
+    if(sortedDirection != "любое направление"){
+      videosList.removeWhere((video) {
+        return video.workout_type != sortedDirection;
+      });
+    }
+
+    return videosList;
+  }
 }
 
 class oneVideos extends StatelessWidget {
@@ -330,13 +381,13 @@ class oneVideos extends StatelessWidget {
   }
 
   translate(String difficulty) {
-    if(difficulty == "beginner"){
+    if (difficulty == "beginner") {
       return 'Новичок';
     }
-    if(difficulty == "medium"){
+    if (difficulty == "medium") {
       return 'Средний';
     }
-    if(difficulty == "advanced"){
+    if (difficulty == "advanced") {
       return 'Продвинутый';
     }
   }

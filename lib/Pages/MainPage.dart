@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:Mental_Health/Pages/ProfilePage.dart';
 import 'package:flutter/material.dart';
 import 'package:Mental_Health/Pages/Panel.dart';
 import 'package:Mental_Health/Pages/YogaPage.dart';
@@ -87,7 +90,7 @@ class _MainPageState extends State<MainPageState> {
           ),
           Positioned(
             bottom: 0,
-            width: 430,
+            width: 390,
             height: 92,
             child: BottomPanel(),
           )
@@ -169,6 +172,78 @@ class _MainPageState extends State<MainPageState> {
   }
 
   Widget dailyOffer() {
+    int numYoga = notices
+        .where(
+            (notion) => notion.getActivityTextsList().contains("Занятие йогой"))
+        .length;
+    int numMeditation = notices
+        .where((notion) => notion.getActivityTextsList().contains("Медитация"))
+        .length;
+    int numTraining = notices
+        .where((notion) =>
+            notion.getActivityTextsList().contains("Занятие спортом"))
+        .length;
+    int numCreation = notices
+        .where((notion) => notion.getActivityTextsList().contains("Творчество"))
+        .length;
+    int minimum =
+        min(min(min(numYoga, numMeditation), numTraining), numCreation);
+
+    Widget activityWidget = _DayOffer(
+      image: Image.asset(
+        'assets/Images/DayOffer2.jpg',
+        width: 380,
+        height: 210,
+        fit: BoxFit.cover,
+      ),
+      text: "Начни день с йоги",
+      page: YogaPageState(),
+    );
+    if (minimum == numYoga) {
+      activityWidget = _DayOffer(
+        image: Image.asset(
+          'assets/Images/DayOffer2.jpg',
+          width: 380,
+          height: 210,
+          fit: BoxFit.cover,
+        ),
+        text: "Начни день с йоги",
+        page: YogaPageState(),
+      );
+    } else if (minimum == numMeditation) {
+      activityWidget = _DayOffer(
+        image: Image.asset(
+          'assets/Images/DayOffer2.jpg',
+          width: 380,
+          height: 210,
+          fit: BoxFit.cover,
+        ),
+        text: "Начни день с медитации",
+        page: MeditationPageState(),
+      );
+    } else if (minimum == numTraining) {
+      activityWidget = _DayOffer(
+        image: Image.asset(
+          'assets/Images/DayOffer2.jpg',
+          width: 380,
+          height: 210,
+          fit: BoxFit.cover,
+        ),
+        text: "Начни день с тренировки",
+        page: TrainingPageState(),
+      );
+    } else if (minimum == numCreation) {
+      activityWidget = _DayOffer(
+        image: Image.asset(
+          'assets/Images/DayOffer2.jpg',
+          width: 380,
+          height: 210,
+          fit: BoxFit.cover,
+        ),
+        text: "Начни день с творчества",
+        page: CreationPageState(),
+      );
+    }
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 25),
       child: Column(
@@ -183,15 +258,7 @@ class _MainPageState extends State<MainPageState> {
                   textAlign: TextAlign.left)),
           SizedBox(height: 10),
           SizedBox(
-            child: _DayOffer(
-              image:Image.asset(
-                  'assets/Images/DayOffer2.jpg',
-                  width: 380,
-                  height: 210,
-                  fit: BoxFit.cover),
-              text: "Начни день с йоги",
-              page: YogaPageState(),
-            ),
+            child: activityWidget,
           ),
         ],
       ),
@@ -215,29 +282,29 @@ class _MainPageState extends State<MainPageState> {
           oneNews(
             image: Image.asset('assets/Images/News1.jpg',
                 width: 380, height: 210, fit: BoxFit.cover),
-            text: "Новость 1",
-            page: NewsPageState(),
+            text: newsTitle[0],
+            page: NewsPageState(index: 0),
           ),
           SizedBox(height: 20),
           oneNews(
             image: Image.asset('assets/Images/News3.jpg',
                 width: 380, height: 210, fit: BoxFit.cover),
-            text: "Новость 2",
-            page: NewsPageState(),
+            text: newsTitle[1],
+            page: NewsPageState(index: 1),
           ),
           SizedBox(height: 20),
           oneNews(
             image: Image.asset('assets/Images/News4.jpg',
                 width: 380, height: 210, fit: BoxFit.cover),
-            text: "Новость 3",
-            page: NewsPageState(),
+            text: newsTitle[2],
+            page: NewsPageState(index: 2),
           ),
           SizedBox(height: 20),
           oneNews(
             image: Image.asset('assets/Images/News5.jpg',
                 width: 380, height: 210, fit: BoxFit.cover),
-            text: "Новость 4",
-            page: NewsPageState(),
+            text: newsTitle[3],
+            page: NewsPageState(index: 3),
           ),
           SizedBox(height: 40),
         ],

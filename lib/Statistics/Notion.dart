@@ -8,12 +8,14 @@ class Notion {
   String date;
   String noteText;
   List<String> activityTextsList;
+  List<Image> activityIconList;
 
   Notion(
       {required this.emoji,
         required this.date,
         required this.noteText,
         required this.activityTextsList,
+        required this.activityIconList,
         });
 
   factory Notion.fromJson(Map<String, dynamic> json, int index) {
@@ -22,8 +24,13 @@ class Notion {
         date: json['date'],
         noteText: json['noteText'],
         activityTextsList: json['activityTexts'],
+        activityIconList: [Image.asset('assets/Icons/SmileGreat.png'),],
         );
 
+
+  }
+  List<Image> getActivityIconList(){
+    return activityIconList;
   }
   String getEmoji(){
     return emoji;

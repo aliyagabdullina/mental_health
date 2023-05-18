@@ -15,6 +15,31 @@ class CustomPaintWidget extends StatefulWidget {
 
 class _CustomPaintWidget extends State<CustomPaintWidget> {
 
+  Color getFreeColor(){
+    if(widget.percentage <= 0.3){
+        return Colors.pink;
+    }
+    if(widget.percentage <= 0.6 && widget.percentage > 0.3){
+      return Colors.orangeAccent;
+    }
+    if(widget.percentage <= 1 && widget.percentage > 0.6){
+      return Colors.cyan;
+    }
+    return Colors.deepPurple;
+  }
+
+  Color getLineColor(){
+    if(widget.percentage < 0.2){
+      return Colors.deepOrangeAccent;
+    }
+    if(widget.percentage <= 0.6 && widget.percentage > 0.3){
+      return Colors.limeAccent;
+    }
+    if(widget.percentage <= 1 && widget.percentage > 0.6){
+      return Colors.cyanAccent;
+    }
+    return Colors.red;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,12 +50,12 @@ class _CustomPaintWidget extends State<CustomPaintWidget> {
           child: RadialPercentWidget(
             percent: widget.percentage,
             fillColor: Colors.black,
-            lineColor: Colors.tealAccent,
-            freeColor: Colors.teal,
+            lineColor: getLineColor(),
+            freeColor: getFreeColor(),
             lineWidth: 5,
             child: Text(
                 (widget.percentage*100).toString() + '%',
-              style: TextStyle(color: Colors.white, fontSize: 25),
+              style: TextStyle(color: Colors.white, fontSize: 22),
             ),
           ),
         ),

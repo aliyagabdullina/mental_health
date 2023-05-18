@@ -28,7 +28,7 @@ class _PlusPageState extends State<PlusPageState> {
       children: <Widget>[
         Positioned(
           bottom: 0,
-          width: 430,
+          width: 390,
           height: 92,
           child: BottomPanel(),
         ),

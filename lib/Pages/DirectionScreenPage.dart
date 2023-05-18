@@ -4,6 +4,7 @@ Color backgroundColorClear = Color.fromRGBO(182, 182, 182, 0);
 Color backgroundColor = Color(0xFFB6B6B6);
 Color whiteTextColor = Color(0xFFFFFFFF);
 
+String sortedDirection = "любое направление";
 class DirectionScreenPageState extends StatefulWidget {
   DirectionScreenPageState({Key? key}) : super(key: key);
 
@@ -23,7 +24,7 @@ class _DirectionScreenPageState extends State<DirectionScreenPageState> {
   }
 
   Widget buildDirectionScreenPageContainer() {
-    List<String> times = ["Хатха йога", "Оздоровительная йога", "Йога нидра", "Фитнес йога", "Стретчинг йога", "Шивананда йога"];
+    List<String> times = ["Хатха йога", "Оздоровительная йога", "Йога нидра", "Фитнес йога", "Стретчинг йога", "Шивананда йога", "любое направление"];
     return Align(
       alignment: Alignment.topLeft,
       child: Container(
@@ -31,7 +32,7 @@ class _DirectionScreenPageState extends State<DirectionScreenPageState> {
           children: [
             Container(
               width: double.infinity,
-              height: 300,
+              height: 350,
               color: backgroundColor,
             ),
             Center(
@@ -60,7 +61,9 @@ class _DirectionScreenPageState extends State<DirectionScreenPageState> {
         ],
       ),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          sortedDirection = text;
+        },
         style: ElevatedButton.styleFrom(
           minimumSize: Size(342, 24),
           padding: EdgeInsets.symmetric(horizontal: 16.0),

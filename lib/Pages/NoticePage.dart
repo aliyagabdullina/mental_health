@@ -7,6 +7,11 @@ import 'package:image_picker/image_picker.dart';
 import 'package:Mental_Health/Pages/Panel.dart';
 import 'package:Mental_Health/Pages/ProfilePage.dart';
 
+import '../Models/TimeConverter.dart';
+import '../Services/HttpPost.dart';
+import '../Statistics/Notion.dart';
+import 'MoodPage.dart';
+
 Color backgroundColor = Color(0xFFB6B6B6);
 Color greyButtonColor = Color(0xFFD9D9D9);
 int indexText = 0;
@@ -80,6 +85,8 @@ class NoticePageState extends StatefulWidget {
 class _NoticePageState extends State<NoticePageState> {
   @override
   Widget build(BuildContext context) {
+    selectedIcons = [];
+    selectedTexts = [];
     return Scaffold(
       backgroundColor: backgroundColor,
       body: Center(
@@ -179,7 +186,8 @@ class _NoticePageState extends State<NoticePageState> {
           ),
           Positioned(
             bottom: 0,
-            width: 430,
+            left: 0,
+            right: 0,
             height: 92,
             child: BottomPanel(),
           ),
@@ -306,6 +314,9 @@ class _TextNotion extends StatelessWidget {
       onTap: () {
         selectedNotion = _controller.text;
       },
+      onEditingComplete:  () {
+        selectedNotion = _controller.text;
+      },
     );
   }
 }
@@ -331,6 +342,19 @@ class _SaveButton extends StatelessWidget {
           )),
         ),
         onPressed: () {
+          sendDataToServer(
+              selectedEmoji,
+              formatter.format(selectedDate!),
+              selectedNotion,
+              selectedTexts);
+          Notion note = new Notion(
+              emoji: selectedEmoji,
+              date: formatter.format(selectedDate!),
+              noteText: selectedNotion,
+              activityTextsList: selectedTexts,
+              activityIconList: selectedIcons);
+
+          notices.add(note);
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => ProfilePageState()),
@@ -398,68 +422,73 @@ class _BlockWidget extends StatelessWidget {
     );
   }
 }
-
-class _IconAndTextWidget extends StatelessWidget {
-  const _IconAndTextWidget({
-    super.key,
-    required this.icon,
-    required this.text,
-  });
-
+class _IconAndTextWidget extends StatefulWidget {
   final Image icon;
   final String text;
+
+  const _IconAndTextWidget({
+    Key? key,
+    required this.icon,
+    required this.text,
+  }) : super(key: key);
+
+  @override
+  _IconAndTextWidgetState createState() => _IconAndTextWidgetState();
+}
+
+class _IconAndTextWidgetState extends State<_IconAndTextWidget> {
+  bool isSelected = false;
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Positioned(
-        top: 0,
-        child: Container(
-          width: 90,
-          child: Column(
-            children: [
-              Container(
-                height: 80,
-                width: 80,
-                child: Stack(
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        // Действие, которое будет выполняться при нажатии на кнопку
-                        if(selectedIcons.contains(icon)){
-                          selectedIcons.remove(icon);
-                        } else{
-                          selectedIcons.add(icon);
-                        }
-                        if(selectedTexts.contains(text)){
-                          selectedTexts.remove(text);
-                        } else{
-                          selectedTexts.add(text);
-                        }
-                      },
-                      child: Text(""),
-                      style: ElevatedButton.styleFrom(
-                        shape: CircleBorder(),
-                        padding: EdgeInsets.all(20),
-                        minimumSize: Size(80, 80),
-                        primary: greyButtonColor,
-                      ),
+      child: Container(
+        width: 90,
+        child: Column(
+          children: [
+            Container(
+              height: 80,
+              width: 80,
+              child: Stack(
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      if (selectedIcons.contains(widget.icon)) {
+                        selectedIcons.remove(widget.icon);
+                      } else {
+                        selectedIcons.add(widget.icon);
+                      }
+                      if (selectedTexts.contains(widget.text)) {
+                        selectedTexts.remove(widget.text);
+                      } else {
+                        selectedTexts.add(widget.text);
+                      }
+                      setState(() {
+                        isSelected = !isSelected;
+                      });
+                    },
+                    child: Text(""),
+                    style: ElevatedButton.styleFrom(
+                      shape: CircleBorder(),
+                      padding: EdgeInsets.all(20),
+                      minimumSize: Size(80, 80),
+                      primary: isSelected ? Colors.blueGrey : greyButtonColor,
                     ),
-                    Align(alignment: Alignment.center, child: icon),
-                  ],
-                ),
+                  ),
+                  Align(alignment: Alignment.center, child: widget.icon),
+                ],
               ),
-              SizedBox(
-                height: 5,
-              ),
-              Text(
-                text + '\n',
-                maxLines: 2,
-                style: TextStyle(color: Colors.white, fontSize: 15),
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Text(
+              widget.text + '\n',
+              maxLines: 2,
+              style: TextStyle(color: Colors.white, fontSize: 15),
+              textAlign: TextAlign.center,
+            ),
+          ],
         ),
       ),
     );

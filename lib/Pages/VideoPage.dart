@@ -93,7 +93,7 @@ class _VideoPageState extends State<VideoPageState> {
           ),
           Positioned(
             bottom: 0,
-            width: 430,
+            width: 390,
             height: 92,
             child: BottomPanel(),
           )
